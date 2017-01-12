@@ -1,0 +1,237 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7482,        229]
+NotebookOptionsPosition[      6817,        201]
+NotebookOutlinePosition[      7176,        217]
+CellTagsIndexPosition[      7133,        214]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"calcg", "[", 
+   RowBox[{"N_", ",", " ", "lim_"}], "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", " ", 
+    RowBox[{"i", "\[LessEqual]", "lim"}], ",", " ", 
+    RowBox[{"i", "++"}], ",", " ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"Element", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"MultiplicativeOrder", "[", 
+          RowBox[{"i", ",", " ", 
+           RowBox[{"N", "^", "2"}]}], "]"}], "/", "N"}], ",", "Integers"}], 
+       "]"}], ",", " ", 
+      RowBox[{"Return", "[", "i", "]"}], ",", " ", "Null"}], " ", "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.69322144223722*^9, 3.693221443271715*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PaillierEnc", "[", "x_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"p", "=", 
+       RowBox[{"RandomPrime", "[", "100", "]"}]}], ",", " ", 
+      RowBox[{"q", "=", 
+       RowBox[{"RandomPrime", "[", "100", "]"}]}]}], "}"}], ",", 
+    "\[IndentingNewLine]", " ", 
+    RowBox[{
+     RowBox[{"n", "=", 
+      RowBox[{"p", "*", "q"}]}], ";", "\[IndentingNewLine]", " ", 
+     RowBox[{"r", "=", 
+      RowBox[{"RandomInteger", "[", 
+       RowBox[{"n", "^", "2"}], "]"}]}], ";", 
+     RowBox[{"g", "=", 
+      RowBox[{"calcg", "[", 
+       RowBox[{"n", ",", " ", 
+        RowBox[{"n", "^", "2"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"g", "^", "x"}], "*", 
+          RowBox[{"r", "^", "n"}]}], ",", " ", 
+         RowBox[{"n", "^", "2"}]}], "]"}], ",", " ", 
+       RowBox[{"StringForm", "[", 
+        RowBox[{
+        "\"\<p=``, q=``, n=``, r=``, g=``\>\"", ",", " ", "p", ",", " ", "q", 
+         ",", " ", "n", ",", " ", "r", ",", " ", "g"}], "]"}]}], "}"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PaillierEnc2", "[", 
+   RowBox[{
+   "x_", ",", " ", "p_", ",", " ", "q_", ",", " ", "r_", ",", " ", "g_"}], 
+   "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"StringForm", "[", 
+   RowBox[{"\"\<c=``, p=``, q=``, n=``, r=``, g=``\>\"", ",", 
+    RowBox[{"Mod", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"g", "^", "x"}], "*", 
+       RowBox[{"r", "^", "n"}]}], ",", " ", 
+      RowBox[{"n", "^", "2"}]}], "]"}], ",", " ", " ", "p", ",", " ", "q", 
+    ",", " ", "n", ",", " ", "r", ",", " ", "g"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.693221443752246*^9, 3.6932214614184237`*^9}, {
+  3.6932215111480503`*^9, 3.693221572839629*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PaillierDec", "[", 
+   RowBox[{"c_", ",", " ", "p_", ",", " ", "q_", ",", " ", "g_"}], "]"}], ":=",
+   "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"n", "=", 
+      RowBox[{"p", "*", "q"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\[Lambda]", "=", 
+      RowBox[{"LCM", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"p", "-", "1"}], ")"}], ",", 
+        RowBox[{"(", 
+         RowBox[{"q", "-", "1"}], ")"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"k", "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{"g", "^", "\[Lambda]"}], ",", " ", 
+           RowBox[{"n", "^", "2"}]}], "]"}], "-", "1"}], ")"}], "/", "n"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"\[Mu]", "=", 
+      RowBox[{"PowerMod", "[", 
+       RowBox[{"k", ",", " ", 
+        RowBox[{"-", "1"}], ",", " ", "n"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"StringForm", "[", 
+      RowBox[{"\"\<Decryption=``, \[Lambda]=``, k=``, \[Mu]=``\>\"", ",", " ", 
+       RowBox[{"Mod", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Mod", "[", 
+              RowBox[{
+               RowBox[{"c", "^", "\[Lambda]"}], ",", " ", 
+               RowBox[{"n", "^", "2"}]}], "]"}], "-", "1"}], ")"}], "/", 
+           "n"}], "*", "\[Mu]"}], ",", "n"}], "]"}], ",", " ", "\[Lambda]", 
+       ",", "k", ",", " ", "\[Mu]"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{3.693221489940833*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PaillierEnc", "[", "100", "]"}]], "Input",
+ CellChangeTimes->{{3.693221601775791*^9, 3.69322160754508*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"3220078", ",", 
+   InterpretationBox["\<\"p=\\!\\(\\*RowBox[{\\\"37\\\"}]\\), \
+q=\\!\\(\\*RowBox[{\\\"83\\\"}]\\), n=\\!\\(\\*RowBox[{\\\"3071\\\"}]\\), \
+r=\\!\\(\\*RowBox[{\\\"2965537\\\"}]\\), \
+g=\\!\\(\\*RowBox[{\\\"2\\\"}]\\)\"\>",
+    StringForm["p=``, q=``, n=``, r=``, g=``", 37, 83, 3071, 2965537, 2],
+    Editable->False]}], "}"}]], "Output",
+ CellChangeTimes->{3.693221609684826*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PaillierEnc2", "[", 
+  RowBox[{
+  "200", ",", " ", "37", ",", " ", "83", ",", "2965537", ",", " ", "2"}], " ",
+   "]"}]], "Input",
+ CellChangeTimes->{{3.693221611766527*^9, 3.6932216331608963`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"c=\\!\\(\\*RowBox[{\\\"982854\\\"}]\\), \
+p=\\!\\(\\*RowBox[{\\\"37\\\"}]\\), q=\\!\\(\\*RowBox[{\\\"83\\\"}]\\), n=\\!\
+\\(\\*RowBox[{\\\"3071\\\"}]\\), r=\\!\\(\\*RowBox[{\\\"2965537\\\"}]\\), \
+g=\\!\\(\\*RowBox[{\\\"2\\\"}]\\)\"\>",
+  StringForm[
+  "c=``, p=``, q=``, n=``, r=``, g=``", 982854, 37, 83, 3071, 2965537, 2],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.693221633818462*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PaillierDec", "[", 
+  RowBox[{
+   RowBox[{"3220078", "*", "982854"}], ",", " ", "37", ",", " ", "83", ",", 
+   " ", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.693221644550497*^9, 3.69322166595478*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"Decryption=\\!\\(\\*RowBox[{\\\"300\\\"}]\\), \
+\[Lambda]=\\!\\(\\*RowBox[{\\\"1476\\\"}]\\), \
+k=\\!\\(\\*RowBox[{\\\"2796\\\"}]\\), \
+\[Mu]=\\!\\(\\*RowBox[{\\\"67\\\"}]\\)\"\>",
+  StringForm[
+  "Decryption=``, \[Lambda]=``, k=``, \[Mu]=``", 300, 1476, 2796, 67],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.6932216664450397`*^9}]
+}, Open  ]]
+},
+WindowSize->{889, 751},
+WindowMargins->{{56, Automatic}, {Automatic, 43}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 733, 20, 54, "Input"],
+Cell[1294, 42, 1897, 50, 159, "Input"],
+Cell[3194, 94, 1668, 47, 138, "Input"],
+Cell[CellGroupData[{
+Cell[4887, 145, 131, 2, 32, "Input"],
+Cell[5021, 149, 436, 9, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5494, 163, 222, 5, 32, "Input"],
+Cell[5719, 170, 436, 8, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6192, 183, 228, 5, 32, "Input"],
+Cell[6423, 190, 378, 8, 66, "Output"]
+}, Open  ]]
+}
+]
+*)
+

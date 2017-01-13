@@ -229,7 +229,7 @@ Cell[5719, 170, 436, 8, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[6192, 183, 228, 5, 32, "Input"],
-Cell[6423, 190, 378, 8, 66, "Output"]
+Cell[6423, 190, 378, 8, 32, "Output"]
 }, Open  ]]
 }
 ]

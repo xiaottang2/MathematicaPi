@@ -1,0 +1,211 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5875,        203]
+NotebookOptionsPosition[      4646,        154]
+NotebookOutlinePosition[      5003,        170]
+CellTagsIndexPosition[      4960,        167]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"k", "=", 
+  RowBox[{"RandomInteger", "[", "1000", "]"}]}]], "Input",
+ CellChangeTimes->{{3.693539926448633*^9, 3.6935399462632217`*^9}}],
+
+Cell[BoxData["347"], "Output",
+ CellChangeTimes->{3.693539946616227*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GenerateRSAKeys", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.6935400764605017`*^9, 3.693540080287526*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"p=\\!\\(\\*RowBox[{\\\"560\\\"}]\\), \
+q=\\!\\(\\*RowBox[{\\\"83\\\"}]\\), n=\\!\\(\\*RowBox[{\\\"46480\\\"}]\\), e=\
+\\!\\(\\*RowBox[{\\\"149\\\"}]\\), d=\\!\\(\\*RowBox[{\\\"317\\\"}]\\)\"\>",
+  StringForm["p=``, q=``, n=``, e=``, d=``", 560, 83, 46480, 149, 317],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.693540080734743*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GenerateRSAKeys", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.693540089732459*^9, 3.693540090711597*^9}, {
+  3.69354012074964*^9, 3.693540122980096*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"p=\\!\\(\\*RowBox[{\\\"729\\\"}]\\), \
+q=\\!\\(\\*RowBox[{\\\"88\\\"}]\\), n=\\!\\(\\*RowBox[{\\\"64152\\\"}]\\), e=\
+\\!\\(\\*RowBox[{\\\"739\\\"}]\\), d=\\!\\(\\*RowBox[{\\\"5419\\\"}]\\)\"\>",
+  StringForm["p=``, q=``, n=``, e=``, d=``", 729, 88, 64152, 739, 5419],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.693540123210454*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"c1", "=", 
+  RowBox[{"RSAEnc", "[", 
+   RowBox[{"k", ",", "149", ",", " ", "46480"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6935401351083593`*^9, 3.693540156953409*^9}}],
+
+Cell[BoxData["40427"], "Output",
+ CellChangeTimes->{3.6935401607317963`*^9}]
+}, Open  ]],
+
+Cell["\:53d1\:9001\:4eba\:7aef", "Input",
+ CellChangeTimes->{{3.693540174174571*^9, 3.693540210710637*^9}},
+ FormatType->"TextForm"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n1", "=", "46480"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d1", "=", "317"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n2", "=", "64152"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d2", "=", "5419"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"k1", "=", 
+  RowBox[{"RSADec", "[", 
+   RowBox[{"c1", ",", " ", "d1", ",", " ", "n1"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"k2", "=", 
+  RowBox[{"RSADec", "[", 
+   RowBox[{"c1", ",", " ", "d2", ",", " ", "n2"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6935402247032747`*^9, 3.693540285654748*^9}}],
+
+Cell[BoxData["347"], "Output",
+ CellChangeTimes->{3.6935402892633266`*^9}],
+
+Cell[BoxData["23579"], "Output",
+ CellChangeTimes->{3.693540289268527*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"m1", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"m2", "=", "200"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"r1", "=", 
+  RowBox[{"BitXor", "[", 
+   RowBox[{"m1", ",", " ", "k1"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"r2", "=", 
+  RowBox[{"BitXor", "[", 
+   RowBox[{"m2", ",", " ", "k2"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.693540299339142*^9, 3.693540362493086*^9}}],
+
+Cell[BoxData["319"], "Output",
+ CellChangeTimes->{{3.6935403441916313`*^9, 3.693540362785961*^9}}],
+
+Cell[BoxData["23763"], "Output",
+ CellChangeTimes->{{3.6935403441916313`*^9, 3.6935403627959633`*^9}}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["\:63a5\:6536\:4eba\:7aef",
+ FontColor->RGBColor[1, 0, 0]]], "Input",
+ CellChangeTimes->{{3.693540375578436*^9, 3.693540384003931*^9}},
+ FormatType->"TextForm"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BitXor", "[", 
+  RowBox[{"r1", ",", " ", "347"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6935404159514017`*^9, 3.693540453718507*^9}}],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{3.6935404543149633`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BitXor", "[", 
+  RowBox[{"r2", ",", " ", "347"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6935404567484913`*^9, 3.69354046320364*^9}}],
+
+Cell[BoxData["23944"], "Output",
+ CellChangeTimes->{3.693540463700556*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 751},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 160, 3, 32, "Input"],
+Cell[743, 27, 72, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[852, 33, 131, 2, 32, "Input"],
+Cell[986, 37, 376, 6, 24, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1399, 48, 177, 3, 32, "Input"],
+Cell[1579, 53, 378, 6, 24, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1994, 64, 196, 4, 32, "Input"],
+Cell[2193, 70, 76, 1, 32, "Output"]
+}, Open  ]],
+Cell[2284, 74, 132, 2, 30, "Input"],
+Cell[CellGroupData[{
+Cell[2441, 80, 624, 16, 138, "Input"],
+Cell[3068, 98, 74, 1, 32, "Output"],
+Cell[3145, 101, 74, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3256, 107, 439, 11, 96, "Input"],
+Cell[3698, 120, 98, 1, 32, "Output"],
+Cell[3799, 123, 102, 1, 32, "Output"]
+}, Open  ]],
+Cell[3916, 127, 183, 3, 30, "Input"],
+Cell[CellGroupData[{
+Cell[4124, 134, 158, 3, 32, "Input"],
+Cell[4285, 139, 74, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4396, 145, 157, 3, 32, "Input"],
+Cell[4556, 150, 74, 1, 66, "Output"]
+}, Open  ]]
+}
+]
+*)
+

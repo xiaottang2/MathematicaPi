@@ -1,0 +1,1807 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     82231,       1799]
+NotebookOptionsPosition[     80678,       1742]
+NotebookOutlinePosition[     81037,       1758]
+CellTagsIndexPosition[     80994,       1755]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pts", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", " ", "9"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"15", ",", " ", "15"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9", ",", " ", "19"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", "16"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "3"}], ",", " ", "8"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"Polygon", "[", "pts", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.693735828687829*^9, 3.693735852555111*^9}, {
+  3.693735935120777*^9, 3.693735989117858*^9}, {3.6937360228120623`*^9, 
+  3.693736151286057*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[
+  PolygonBox[{{0, 0}, {10, 2}, {18, 9}, {15, 15}, {9, 19}, {2, 16}, {-3, 
+   8}}]]], "Output",
+ CellChangeTimes->{{3.693736055182321*^9, 3.6937361063355703`*^9}, 
+   3.6937361523125772`*^9, 3.69374029702689*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"makepolygons", "[", 
+   RowBox[{"pts", ",", "10", ",", " ", "5"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.693736124095924*^9, 3.693736126827512*^9}, {
+  3.693736157306405*^9, 3.693736185095861*^9}, {3.6937365577366657`*^9, 
+  3.693736689767646*^9}, {3.693736816487028*^9, 3.6937368166666327`*^9}, {
+  3.6937368508625383`*^9, 3.693736935455717*^9}, {3.693736998254806*^9, 
+  3.693737028458501*^9}, {3.693737800829378*^9, 3.6937378144423857`*^9}, {
+  3.693737916600181*^9, 3.693737922260167*^9}, {3.693738067952161*^9, 
+  3.693738068115288*^9}, {3.693738251427112*^9, 3.6937382741187277`*^9}, {
+  3.693738474971424*^9, 3.693738475173415*^9}, {3.693740289021987*^9, 
+  3.693740290763268*^9}, {3.693740407983891*^9, 3.693740408341054*^9}, {
+  3.6937406617430363`*^9, 3.693740671530333*^9}, {3.693740758314015*^9, 
+  3.6937407660306463`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[{{0, 0}, {10, 2}, {18, 9}, {15, 15}, {9, 19}, {2, 16}, {-3, 
+     8}}]}, 
+   {RGBColor[0.1, 0.1, 0.1], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{8, Rational[8, 5]}, {Rational[82, 5], Rational[38, 5]}, {
+       Rational[78, 5], Rational[69, 5]}, {
+       Rational[51, 5], Rational[91, 5]}, {
+       Rational[17, 5], Rational[83, 5]}, {-2, Rational[48, 5]}, {
+       Rational[-3, 5], Rational[8, 5]}}, {{8, 1.6}, {16.4, 7.6}, {15.6, 
+       13.8}, {10.2, 18.2}, {3.4, 16.6}, {-2, 9.6}, {-0.6, 1.6}}]]}, 
+   {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[61, 5], Rational[23, 5]}, {16, Rational[107, 10]}, {
+       Rational[129, 10], 16}, {Rational[34, 5], Rational[87, 5]}, {
+       Rational[7, 10], Rational[131, 10]}, {
+       Rational[-13, 10], Rational[28, 5]}, {
+       Rational[37, 10], Rational[8, 5]}}, {{12.2, 4.6}, {16, 10.7}, {
+       12.9, 16}, {6.8, 17.4}, {0.7, 13.1}, {-1.3, 5.6}, {3.7, 1.6}}]]}, 
+   {RGBColor[0.3, 0.3, 0.3], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[141, 10], Rational[153, 20]}, {
+       Rational[289, 20], Rational[267, 20]}, {
+       Rational[197, 20], Rational[167, 10]}, {
+       Rational[15, 4], Rational[61, 4]}, {
+       Rational[-3, 10], Rational[187, 20]}, {
+       Rational[6, 5], Rational[18, 5]}, {
+       Rational[159, 20], Rational[31, 10]}}, {{14.1, 7.65}, {14.45, 13.35}, {
+      9.85, 16.7}, {3.75, 15.25}, {-0.3, 9.35}, {1.2, 3.6}, {7.95, 3.1}}]]}, 
+   {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[571, 40], Rational[21, 2]}, {
+       Rational[243, 20], Rational[601, 40]}, {
+       Rational[34, 5], Rational[639, 40]}, {
+       Rational[69, 40], Rational[123, 10]}, {
+       Rational[9, 20], Rational[259, 40]}, {
+       Rational[183, 40], Rational[67, 20]}, {
+       Rational[441, 40], Rational[43, 8]}}, {{14.275, 10.5}, {12.15, 
+      15.025}, {6.8, 15.975}, {1.725, 12.3}, {0.45, 6.475}, {4.575, 3.35}, {
+      11.025, 5.375}}]]}, 
+   {RGBColor[0.5, 0.5, 0.5], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[1057, 80], Rational[1021, 80]}, {
+       Rational[379, 40], Rational[31, 2]}, {
+       Rational[341, 80], Rational[1131, 80]}, {
+       Rational[87, 80], Rational[751, 80]}, {
+       Rational[201, 80], Rational[393, 80]}, {
+       Rational[39, 5], Rational[349, 80]}, {
+       Rational[253, 20], Rational[127, 16]}}, {{13.2125, 12.7625}, {9.475, 
+      15.5}, {4.2625, 14.1375}, {1.0875, 9.3875}, {2.5125, 4.9125}, {7.8, 
+      4.3625}, {12.65, 7.9375}}]]}, 
+   {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[363, 32], Rational[2261, 160]}, {
+       Rational[1099, 160], Rational[2371, 160]}, {
+       Rational[107, 40], Rational[941, 80]}, {
+       Rational[9, 5], Rational[143, 20]}, {
+       Rational[165, 32], Rational[371, 80]}, {
+       Rational[409, 40], Rational[123, 20]}, {
+       Rational[2069, 160], Rational[207, 20]}}, {{11.34375, 14.13125}, {
+      6.86875, 14.81875}, {2.675, 11.7625}, {1.8, 7.15}, {5.15625, 4.6375}, {
+      10.225, 6.15}, {12.93125, 10.35}}]]}, 
+   {RGBColor[0.7, 0.7, 0.7], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[1457, 160], Rational[579, 40]}, {
+       Rational[1527, 320], Rational[4253, 320]}, {
+       Rational[179, 80], Rational[1513, 160]}, {
+       Rational[1113, 320], Rational[943, 160]}, {
+       Rational[2461, 320], Rational[863, 160]}, {
+       Rational[741, 64], Rational[33, 4]}, {
+       Rational[971, 80], Rational[3917, 320]}}, {{9.10625, 14.475}, {
+      4.771875, 13.290625}, {2.2375, 9.45625}, {3.478125, 5.89375}, {7.690625,
+       5.39375}, {11.578125, 8.25}, {12.1375, 12.240625}}]]}, 
+   {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[4441, 640], Rational[1777, 128]}, {
+       Rational[2243, 640], Rational[7279, 640]}, {
+       Rational[1829, 640], Rational[307, 40]}, {
+       Rational[1787, 320], Rational[903, 160]}, {
+       Rational[3083, 320], Rational[2183, 320]}, {
+       Rational[7589, 640], Rational[6557, 640]}, {
+       Rational[3399, 320], Rational[8549, 640]}}, {{6.9390625, 13.8828125}, {
+      3.5046875, 11.3734375}, {2.8578125, 7.675}, {5.584375, 5.64375}, {
+      9.634375, 6.821875}, {11.8578125, 10.2453125}, {10.621875, 
+      13.3578125}}]]}, 
+   {RGBColor[0.9, 0.9, 0.9], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[1671, 320], Rational[4041, 320]}, {
+       Rational[509, 160], Rational[12191, 1280]}, {
+       Rational[5403, 1280], Rational[2131, 320]}, {
+       Rational[487, 64], Rational[3989, 640]}, {
+       Rational[2751, 256], Rational[10923, 1280]}, {
+       Rational[14387, 1280], Rational[7553, 640]}, {
+       Rational[11239, 1280], Rational[8717, 640]}}, {{5.221875, 12.628125}, {
+      3.18125, 9.52421875}, {4.22109375, 6.659375}, {7.609375, 6.2328125}, {
+      10.74609375, 8.53359375}, {11.23984375, 11.8015625}, {8.78046875, 
+      13.6203125}}]]}, 
+   {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+    PolygonBox[
+     NCache[{{Rational[2689, 640], Rational[5671, 512]}, {
+       Rational[1895, 512], Rational[4143, 512]}, {
+       Rational[15143, 2560], Rational[8251, 1280]}, {
+       Rational[4699, 512], Rational[18901, 2560]}, {
+       Rational[14071, 1280], Rational[26029, 2560]}, {
+       Rational[12813, 1280], Rational[1627, 128]}, {
+       Rational[17923, 2560], Rational[16799, 1280]}}, {{4.2015625, 
+      11.076171875}, {3.701171875, 8.091796875}, {5.915234375, 6.44609375}, {
+      9.177734375, 7.383203125}, {10.99296875, 10.167578125}, {10.01015625, 
+      12.7109375}, {7.001171875, 13.12421875}}]]}}]], "Output",
+ CellChangeTimes->{{3.6937366482826147`*^9, 3.693736690114716*^9}, {
+   3.693736888873267*^9, 3.693736961090958*^9}, {3.693737006997712*^9, 
+   3.693737024822424*^9}, 3.693737815490911*^9, {3.693737895188633*^9, 
+   3.693737936450097*^9}, 3.693737980388143*^9, 3.693738068699705*^9, {
+   3.69373825202309*^9, 3.693738274779614*^9}, 3.693738335572411*^9, {
+   3.693738451678988*^9, 3.693738475861144*^9}, 3.693740298875874*^9, 
+   3.693740409121046*^9, {3.693740662730115*^9, 3.693740671969914*^9}, {
+   3.693740756875098*^9, 3.693740766660714*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "Section"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.693740309931992*^9, 3.693740312441577*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GetMidPoints", "[", 
+   RowBox[{"list_", ",", "idx_", ",", " ", "s_"}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"r", "=", 
+      RowBox[{"{", "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"idx", "\[Equal]", "0"}], ",", 
+       RowBox[{"Return", "[", "list", "]"}], ",", "Null"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"j", "=", "1"}], ",", 
+       RowBox[{"j", "<", 
+        RowBox[{"Length", "[", "list", "]"}]}], ",", 
+       RowBox[{"j", "++"}], ",", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"r", ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"list", "[", 
+             RowBox[{"[", "j", "]"}], "]"}], "+", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"s", "-", "1"}], ")"}], 
+             RowBox[{"list", "[", 
+              RowBox[{"[", 
+               RowBox[{"j", "+", "1"}], "]"}], "]"}]}]}], ")"}], "/", "s"}]}],
+         "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"r", ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"list", "[", 
+           RowBox[{"[", 
+            RowBox[{"Length", "[", "list", "]"}], "]"}], "]"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"s", "-", "1"}], ")"}], 
+           RowBox[{"list", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}]}], ")"}], "/", "s"}]}], "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"idx", "\[Equal]", "1"}], ",", 
+       RowBox[{"Return", "[", "r", "]"}], ",", 
+       RowBox[{"Return", "[", 
+        RowBox[{"GetMidPoints", "[", 
+         RowBox[{"r", ",", 
+          RowBox[{"idx", "-", "1"}]}], "]"}], "]"}]}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.693736344053792*^9, 3.693736534145749*^9}, {
+  3.693736727555236*^9, 3.693736806554624*^9}, {3.693736948924728*^9, 
+  3.693736952321353*^9}, {3.69373786680961*^9, 3.6937378820882587`*^9}, {
+  3.6937382123846903`*^9, 3.693738234095501*^9}, {3.693740611787993*^9, 
+  3.6937406253167467`*^9}, {3.693740714609967*^9, 3.693740753049799*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"makepolygons", "[", 
+   RowBox[{"pts_", ",", "depth_", ",", " ", "s_"}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"graph", "=", 
+      RowBox[{"{", "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "0"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "depth"}], ",", 
+       RowBox[{"i", "++"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"graph", ",", 
+           RowBox[{"RGBColor", "[", 
+            RowBox[{
+             RowBox[{"N", "[", 
+              RowBox[{"i", "/", "depth"}], "]"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{"i", "/", "depth"}], "]"}], ",", 
+             RowBox[{"N", "[", 
+              RowBox[{"i", "/", "depth"}], "]"}]}], "]"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"graph", ",", 
+           RowBox[{"EdgeForm", "[", 
+            RowBox[{"{", 
+             RowBox[{"Thin", ",", "Black"}], "}"}], "]"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"graph", ",", 
+           RowBox[{"Polygon", "[", 
+            RowBox[{"GetMidPoints", "[", 
+             RowBox[{"pts", ",", "i", ",", " ", "s"}], "]"}], "]"}]}], 
+          "]"}]}], "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "graph", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.693737137339611*^9, 3.693737161945114*^9}, {
+  3.693737222849093*^9, 3.6937372252439537`*^9}, {3.693737432545134*^9, 
+  3.693737433366581*^9}, {3.6937375050211687`*^9, 3.6937375114223747`*^9}, {
+  3.693737597931188*^9, 3.693737725137212*^9}, {3.693737756207543*^9, 
+  3.69373779010363*^9}, {3.693737929099209*^9, 3.6937379328029623`*^9}, {
+  3.693737972714476*^9, 3.693737976630309*^9}, {3.693738089264175*^9, 
+  3.693738161450962*^9}, {3.693738241616105*^9, 3.693738245842763*^9}, {
+  3.693738293662472*^9, 3.6937384387377243`*^9}, {3.6937406456909447`*^9, 
+  3.693740649953878*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GetMidPoints", "[", 
+  RowBox[{"pts", ",", "4"}], "]"}]], "Input",
+ CellChangeTimes->{{3.693737851914826*^9, 3.693737858269865*^9}, {
+  3.69373801268847*^9, 3.693738046921587*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["217", "16"], ",", 
+     FractionBox["141", "16"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["105", "8"], ",", 
+     FractionBox["55", "4"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["137", "16"], ",", 
+     FractionBox["255", "16"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["51", "16"], ",", 
+     FractionBox["219", "16"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["9", "16"], ",", 
+     FractionBox["133", "16"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", 
+     FractionBox["65", "16"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", 
+     FractionBox["71", "16"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6937378532192574`*^9, 3.6937378866859703`*^9}, {
+  3.693738013185563*^9, 3.693738047374228*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makepolygons", "[", 
+  RowBox[{"pts", ",", "5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.693738106727738*^9, 3.693738110867594*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["0"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150762205*^9}}],
+
+Cell[BoxData["1"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.6937381507719383`*^9}}],
+
+Cell[BoxData["2"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150783269*^9}}],
+
+Cell[BoxData["3"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150787231*^9}}],
+
+Cell[BoxData["4"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150791518*^9}}],
+
+Cell[BoxData["5"], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150795898*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0., 0., 0.], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[0., 0., 0.],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0., 0., 0.]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0., 0., 0.]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0., 0., 0.],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.2, 0.2, 0.2], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.13333333333333336`, 0.13333333333333336`, 0.13333333333333336`],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.2, 0.2, 0.2]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.2, 0.2, 0.2]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.2, 0.2, 0.2],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.4, 0.4, 0.4], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.2666666666666667, 0.2666666666666667, 0.2666666666666667],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.4, 0.4, 0.4]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.4, 0.4, 0.4]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.4, 0.4, 0.4],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.6, 0.6, 0.6], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[0.4, 0.4, 0.4],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.6, 0.6, 0.6]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.6, 0.6, 0.6]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.6, 0.6, 0.6],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.8, 0.8, 0.8], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.5333333333333334, 0.5333333333333334, 0.5333333333333334],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.8, 0.8, 0.8]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.8, 0.8, 0.8]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.8, 0.8, 0.8],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[1., 1., 1.], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.6666666666666667, 0.6666666666666667, 0.6666666666666667],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[1., 1., 1.]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1., 1., 1.]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[1., 1., 1.],
+    Editable->False,
+    Selectable->False]}], "}"}]], "Print",
+ CellChangeTimes->{{3.693738111311083*^9, 3.693738150802194*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0., 0., 0.], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[0., 0., 0.],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0., 0., 0.]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0., 0., 0.]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0., 0., 0.],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.2, 0.2, 0.2], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.13333333333333336`, 0.13333333333333336`, 0.13333333333333336`],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.2, 0.2, 0.2]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.2, 0.2, 0.2]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.2, 0.2, 0.2],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.4, 0.4, 0.4], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.2666666666666667, 0.2666666666666667, 0.2666666666666667],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.4, 0.4, 0.4]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.4, 0.4, 0.4]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.4, 0.4, 0.4],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.6, 0.6, 0.6], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[0.4, 0.4, 0.4],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.6, 0.6, 0.6]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.6, 0.6, 0.6]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.6, 0.6, 0.6],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[0.8, 0.8, 0.8], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.5333333333333334, 0.5333333333333334, 0.5333333333333334],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[0.8, 0.8, 0.8]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[0.8, 0.8, 0.8]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[0.8, 0.8, 0.8],
+    Editable->False,
+    Selectable->False], ",", 
+   InterpretationBox[
+    ButtonBox[
+     TooltipBox[
+      GraphicsBox[{
+        {GrayLevel[0], RectangleBox[{0, 0}]}, 
+        {GrayLevel[0], RectangleBox[{1, -1}]}, 
+        {RGBColor[1., 1., 1.], RectangleBox[{0, -1}, {2, 1}]}},
+       AspectRatio->1,
+       Frame->True,
+       FrameStyle->RGBColor[
+        0.6666666666666667, 0.6666666666666667, 0.6666666666666667],
+       FrameTicks->None,
+       ImageSize->
+        Dynamic[{
+         Automatic, 1.35 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+          Magnification]}],
+       PlotRangePadding->None],
+      "RGBColor[1., 1., 1.]"],
+     Appearance->None,
+     BaseStyle->{},
+     BaselinePosition->Baseline,
+     ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+       If[
+        Not[
+         AbsoluteCurrentValue["Deployed"]], 
+        SelectionMove[Typeset`box$, All, Expression]; 
+        FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+        FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1., 1., 1.]; 
+        FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+        MathLink`CallFrontEnd[
+          FrontEnd`AttachCell[Typeset`box$, 
+           FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+           Left, Top}, 
+           "ClosingActions" -> {
+            "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+     DefaultBaseStyle->{},
+     Evaluator->Automatic,
+     Method->"Preemptive"],
+    RGBColor[1., 1., 1.],
+    Editable->False,
+    Selectable->False]}], "}"}]], "Output",
+ CellChangeTimes->{{3.693738111354698*^9, 3.6937381508123283`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"genrandompolypoints", "[", "n_", "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"r", "=", "10"}], ",", 
+      RowBox[{"result", "=", 
+       RowBox[{"{", "}"}]}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"rands", "=", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"RandomReal", "[", 
+        RowBox[{
+         RowBox[{"2", "Pi"}], ",", 
+         RowBox[{"{", "n", "}"}]}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"r", "*", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"rands", "[", 
+             RowBox[{"[", "k", "]"}], "]"}], "]"}]}], ",", 
+          RowBox[{"r", "*", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"rands", "[", 
+             RowBox[{"[", "k", "]"}], "]"}], "]"}]}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "n"}], "}"}]}], "]"}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.693738490488028*^9, 3.6937385092283983`*^9}, {
+  3.693738551223967*^9, 3.69373855332733*^9}, {3.693738707634008*^9, 
+  3.693738789679747*^9}, {3.6937388249711637`*^9, 3.693738860339387*^9}, {
+  3.693738892663459*^9, 3.693738908163466*^9}, {3.693738954597022*^9, 
+  3.69373895588832*^9}, {3.6937390118908577`*^9, 3.693739020361499*^9}, {
+  3.693739090708551*^9, 3.69373914010752*^9}, {3.693739232560452*^9, 
+  3.693739253124401*^9}, {3.6937393120712957`*^9, 3.69373934620674*^9}, {
+  3.6937393926008587`*^9, 3.693739413707028*^9}, {3.69373946213807*^9, 
+  3.693739465644807*^9}, {3.693739495660367*^9, 3.693739539944434*^9}, {
+  3.693739600523979*^9, 3.693739762872727*^9}, {3.693739807895817*^9, 
+  3.6937398648058157`*^9}, {3.693739911191061*^9, 3.693739924723228*^9}, {
+  3.693739963561129*^9, 3.693739984336084*^9}, {3.693740052572991*^9, 
+  3.693740063975526*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"genrandompolypoints", "[", "10", "]"}]], "Input",
+ CellChangeTimes->{{3.6937390258289347`*^9, 3.693739026751539*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "9.963683052569298`"}], ",", "0.8514810790283889`"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "9.90440578061602`"}], ",", "1.3794006426343064`"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"7.603018200388161`", ",", 
+     RowBox[{"-", "6.495699673211991`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7.399115620659758`", ",", 
+     RowBox[{"-", "6.727041551239948`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6.294888286351279`", ",", 
+     RowBox[{"-", "7.770095331613214`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.09856403002456549`", ",", 
+     RowBox[{"-", "9.99951424480136`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.057080408045094067`", ",", 
+     RowBox[{"-", "9.999837090023888`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7.215141814521326`", ",", "6.923996576858331`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "7.408818626474762`"}], ",", 
+     RowBox[{"-", "6.716353665494442`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7.65157121917559`", ",", "6.438435980724183`"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.6937390270747128`*^9, {3.69373913413535*^9, 3.693739143264082*^9}, 
+   3.693739355533835*^9, 3.6937394178111477`*^9, {3.693739705962603*^9, 
+   3.69373976515343*^9}, 3.693739835300488*^9, 3.693739867442428*^9, {
+   3.69373991954525*^9, 3.693739931268921*^9}, 3.693739974280044*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rands", "=", 
+  RowBox[{"RandomReal", "[", 
+   RowBox[{
+    RowBox[{"2", "Pi"}], ",", 
+    RowBox[{"{", "10", "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.693739819717483*^9, 3.693739830762075*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "4.359622562785216`", ",", "2.473678713082533`", ",", "2.2921625371024366`",
+    ",", "5.6635157202831685`", ",", "1.6887686073846826`", ",", 
+   "3.49959116590194`", ",", "5.874133753533032`", ",", 
+   "0.45748909514054414`", ",", "3.4784698880970417`", ",", 
+   "2.7766872541547887`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.693739828367984*^9, 3.6937398310990133`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "4", "]"}], ",", "10"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "5", "]"}], ",", "15"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "6", "]"}], ",", "15"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "7", "]"}], ",", "15"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "8", "]"}], ",", "15"}], "]"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"makepolygons", "[", 
+     RowBox[{
+      RowBox[{"genrandompolypoints", "[", "9", "]"}], ",", "15"}], "]"}], 
+    "]"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.693738514611814*^9, 3.6937385413009167`*^9}, 
+   3.693739162683621*^9, {3.69373919602206*^9, 3.6937391965358677`*^9}, {
+   3.6937400739542713`*^9, 3.693740162097287*^9}, {3.693740222274358*^9, 
+   3.693740236550248*^9}, {3.69374027459795*^9, 3.693740279490841*^9}, {
+   3.6937408433077593`*^9, 3.693740844960717*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{9.991230979093546, -0.41869263475902396`}, {
+       5.099087619699516, -8.60228489685311}, {-9.770242667323753, 
+       2.1312808875430838`}, {-8.992927660499483, 4.373471400732293}}]}, 
+     {RGBColor[0.1, 0.1, 0.1], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       7.545159299396531, -4.510488765806067}, {-2.335577523812119, \
+-3.235502004655013}, {-9.381585163911618, 3.2523761441376884`}, {
+       0.49915165929703154`, 1.9773893829866345`}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       2.604790887792206, -3.8729953852305403`}, {-5.858581343861868, 
+       0.008437069741337622}, {-4.441216752307293, 2.6148827635621616`}, {
+       4.022155479346781, -1.2665496914097163`}}]}, 
+     {RGBColor[0.3, 0.3, 0.3], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.626895228034831, -1.9322791577446012`}, \
+{-5.14989904808458, 1.3116599166517497`}, {-0.20953063648025605`, 
+       0.6741665360762227}, {3.313473183569493, -2.5697725383201284`}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-3.3883971380597058`, -0.31030962054642575`}, \
+{-2.679714842282418, 0.9929132263639862}, {
+       1.5519712735446185`, -0.9478030011219529}, {
+       0.843288977767331, -2.2510258480323646`}}]}, 
+     {RGBColor[0.5, 0.5, 0.5], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-3.034055990171062, 
+       0.3413018029087802}, {-0.5638717843688998, 0.022555112621016615`}, {
+       1.1976301256559747`, -1.5994144245771587`}, {-1.2725540801461874`, \
+-1.2806677342893953`}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.798963887269981, 0.1819284577648984}, {
+       0.31687917064353743`, -0.788429655978071}, {-0.03746197724510636, \
+-1.440041079433277}, {-2.153305035158625, -0.46968296569030754`}}]}, 
+     {RGBColor[0.7, 0.7, 0.7], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.7410423583132217, -0.3032505991065863}, {
+       0.13970859669921554`, -1.114235367705674}, {-1.0953835062018658`, \
+-0.9548620225617923}, {-1.9761344612143028`, -0.14387725396270457`}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.3006668808070031, -0.7087429834061302}, \
+{-0.4778374547513251, -1.0345486951337333`}, {-1.5357589837080843`, \
+-0.5493696382622484}, {-1.3585884097637622`, -0.22356392653464544`}}]}, 
+     {RGBColor[0.9, 0.9, 0.9], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.3892521677791641, -0.8716458392699318}, \
+{-1.0067982192297047`, -0.7919591666979908}, {-1.4471736967359232`, \
+-0.3864667823984469}, {-0.8296276452853826, -0.4661534549703878}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.6980251935044344, -0.8318025029839613}, \
+{-1.226985957982814, -0.5892129745482189}, {-1.138400671010653, \
+-0.42631011868441737`}, {-0.6094399065322733, -0.6688996471201598}}]}}], ",", 
+   
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{1.1046439982390501`, 
+       9.938800814844537}, {-8.10675831182887, -5.854952576545223}, \
+{-9.939387682401502, 1.0993509443873297`}, {-7.763765835515073, 
+       6.302693079255006}, {-2.8118367665875503`, 9.596539688766283}}]}, 
+     {RGBColor[0.06666666666666667, 0.06666666666666667, 0.06666666666666667],
+       EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-3.50105715679491, 
+       2.041924119149657}, {-9.023072997115186, -2.3778008160789468`}, \
+{-8.851576758958288, 3.7010220118211676`}, {-5.287801301051312, 
+       7.949616384010644}, {-0.8535963841742501, 9.76767025180541}}]}, 
+     {RGBColor[
+      0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-6.262065076955048, -0.16793834846464484`}, \
+{-8.937324878036737, 0.6616105978711104}, {-7.0696890300048, 
+       5.825319197915906}, {-3.070698842612781, 
+       8.858643317908026}, {-2.17732677048458, 5.904797185477533}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-7.599694977495893, 
+       0.2468361247032328}, {-8.003506954020768, 
+       3.2434648978935083`}, {-5.07019393630879, 
+       7.341981257911966}, {-2.6240128065486807`, 
+       7.38172025169278}, {-4.219695923719814, 2.868429418506444}}]}, 
+     {RGBColor[
+      0.26666666666666666`, 0.26666666666666666`, 0.26666666666666666`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-7.801600965758331, 
+       1.7451505112983705`}, {-6.536850445164779, 
+       5.292723077902737}, {-3.8471033714287355`, 
+       7.361850754802373}, {-3.4218543651342475`, 
+       5.125074835099612}, {-5.909695450607853, 1.5576327716048384`}}]}, 
+     {RGBColor[0.3333333333333333, 0.3333333333333333, 0.3333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-7.169225705461555, 
+       3.518936794600554}, {-5.191976908296757, 
+       6.327286916352556}, {-3.6344788682814917`, 
+       6.243462794950993}, {-4.66577490787105, 
+       3.3413538033522254`}, {-6.8556482081830925`, 1.6513916414516046`}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-6.180601306879156, 
+       4.923111855476555}, {-4.413227888289125, 
+       6.285374855651774}, {-4.1501268880762705`, 
+       4.792408299151609}, {-5.760711558027071, 
+       2.496372722401915}, {-7.012436956822324, 2.585164218026079}}]}, 
+     {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.2969145975841405`, 
+       5.604243355564165}, {-4.281677388182698, 
+       5.538891577401692}, {-4.9554192230516705`, 
+       3.6443905107767622`}, {-6.386574257424698, 
+       2.5407684702139974`}, {-6.59651913185074, 3.754138036751317}}]}, 
+     {RGBColor[0.5333333333333333, 0.5333333333333333, 0.5333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-4.789295992883419, 
+       5.571567466482929}, {-4.618548305617184, 
+       4.5916410440892275`}, {-5.670996740238184, 
+       3.09257949049538}, {-6.491546694637719, 
+       3.147453253482657}, {-5.94671686471744, 4.679190696157741}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-4.703922149250301, 
+       5.081604255286078}, {-5.144772522927684, 
+       3.8421102672923038`}, {-6.081271717437952, 
+       3.120016371989019}, {-6.21913177967758, 
+       3.9133219748201995`}, {-5.368006428800429, 5.125379081320335}}]}, 
+     {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-4.924347336088992, 
+       4.461857261289191}, {-5.613022120182817, 
+       3.4810633196406613`}, {-6.150201748557766, 
+       3.516669173404609}, {-5.793569104239005, 
+       4.519350528070268}, {-5.035964289025365, 5.1034916683032066`}}]}, 
+     {RGBColor[0.7333333333333333, 0.7333333333333333, 0.7333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.268684728135905, 
+       3.9714602904649263`}, {-5.881611934370292, 
+       3.4988662465226352`}, {-5.971885426398385, 
+       4.018009850737439}, {-5.414766696632185, 
+       4.811421098186737}, {-4.980155812557179, 4.782674464796199}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.575148331253098, 
+       3.735163268493781}, {-5.926748680384339, 
+       3.758438048630037}, {-5.693326061515285, 
+       4.4147154744620885`}, {-5.197461254594682, 
+       4.797047781491468}, {-5.124420270346542, 4.377067377630563}}]}, 
+     {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.750948505818719, 
+       3.746800658561909}, {-5.8100373709498125`, 
+       4.086576761546063}, {-5.445393658054984, 
+       4.605881627976778}, {-5.160940762470612, 
+       4.587057579561016}, {-5.34978430079982, 4.056115323062172}}]}, 
+     {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.780492938384265, 
+       3.916688710053986}, {-5.627715514502398, 
+       4.3462291947614204`}, {-5.303167210262798, 
+       4.596469603768897}, {-5.255362531635216, 
+       4.321586451311594}, {-5.550366403309269, 3.90145799081204}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-5.704104226443332, 
+       4.131458952407703}, {-5.465441362382598, 
+       4.471349399265159}, {-5.279264870949007, 
+       4.459028027540246}, {-5.402864467472242, 
+       4.111522221061817}, {-5.665429670846767, 3.909073350433013}}]}}], ",", 
+   
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.7987306532862898, 9.968050428418833}, {
+       9.974900155983077, -0.708072650346562}, {
+       5.215834965163582, -8.532002438828592}, {
+       3.024034838243319, -9.531800107906728}, {-2.4977621715046334`, \
+-9.683035894521947}, {-6.926466465614654, 7.212770778328926}}]}, 
+     {RGBColor[0.06666666666666667, 0.06666666666666667, 0.06666666666666667],
+       EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.3868154046346834`, 4.629988889036135}, {
+       7.5953675605733295`, -4.620037544587577}, {
+       4.11993490170345, -9.031901273367659}, {
+       0.26313633336934283`, -9.607418001214338}, {-4.712114318559644, \
+-1.2351325580965105`}, {-3.063867906164182, 8.59041060337388}}]}, 
+     {RGBColor[
+      0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{6.4910914826040065`, 0.004975672224279304}, {
+       5.85765123113839, -6.825969408977618}, {
+       2.1915356175363967`, -9.319659637290998}, {-2.2244889925951505`, \
+-5.421275279655424}, {-3.887991112361913, 3.6776390226386844`}, {
+       1.1614737492352507`, 6.610199746205007}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{6.174371356871198, -3.4104968683766694`}, {
+       4.024593424337393, -8.072814523134308}, {-0.01647668752937692, \
+-7.370467458473211}, {-3.0562400524785316`, -0.8718181285083697}, \
+{-1.3632586815633312`, 5.143919384421846}, {3.8262826159196286`, 
+       3.3075877092146433`}}]}, 
+     {RGBColor[
+      0.26666666666666666`, 0.26666666666666666`, 0.26666666666666666`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.099482390604296, -5.7416556957554885`}, {
+       2.0040583684040083`, -7.72164099080376}, {-1.5363583700039543`, \
+-4.12114279349079}, {-2.2097493670209314`, 2.136050627956738}, {
+       1.2315119671781487`, 4.225753546818245}, {
+       5.000326986395414, -0.05145457958101307}}]}, 
+     {RGBColor[0.3333333333333333, 0.3333333333333333, 0.3333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{3.551770379504152, -6.731648343279624}, {
+       0.23384999920002703`, -5.921391892147275}, {-1.873053868512443, \
+-0.992546082767026}, {-0.48911869992139134`, 3.1809020873874916`}, {
+       3.115919476786781, 2.087149483618616}, {
+       5.049904688499854, -2.896555137668251}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       1.8928101893520894`, -6.32652011771345}, {-0.819601934656208, \
+-3.4569689874571505`}, {-1.1810862842169172`, 1.0941780023102328`}, {
+       1.3134003884326948`, 2.634025785503054}, {
+       4.082912082643317, -0.4047028270248174}, {
+       4.300837534002003, -4.814101740473937}}]}, 
+     {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       0.5366041273479407, -4.8917445525853}, {-1.0003441094365626`, \
+-1.1813954925734589`}, {0.0661570521078888, 1.8641018939066434`}, {
+       2.698156235538006, 1.1146614792391183`}, {
+       4.191874808322661, -2.609402283749377}, {
+       3.0968238616770463`, -5.570310929093694}}]}, 
+     {RGBColor[0.5333333333333333, 0.5333333333333333, 0.5333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.23186999104431094`, -3.0365700225793795`}, \
+{-0.4670935286643369, 0.34135320066659225`}, {1.3821566438229473`, 
+       1.4893816865728808`}, {3.4450155219303333`, -0.7473704022551294}, {
+       3.6443493349998537`, -4.089856606421535}, {
+       1.8167139945124935`, -5.231027740839497}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.34948175985432395`, -1.3476084109563935`}, {
+       0.4575315575793052, 0.9153674436197365}, {2.4135860828766402`, 
+       0.3710056421588757}, {3.5446824284650935`, -2.4186135043383326`}, {
+       2.7305316647561737`, -4.660442173630516}, {
+       0.7924220017340913, -4.133798881709438}}]}, 
+     {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.05402489886249062, -0.21612048366832848`}, {
+       1.4355588202279728`, 0.6431865428893061}, {
+       2.979134255670867, -1.0238039310897284`}, {
+       3.1376070466106336`, -3.5395278389844242`}, {
+       1.7614768332451325`, -4.397120527669977}, {
+       0.22147012093988366`, -2.740703646332916}}]}, 
+     {RGBColor[0.7333333333333333, 0.7333333333333333, 0.7333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.7447918595452316, 0.2135330296104888}, {
+       2.20734653794942, -0.19030869410021117`}, {
+       3.0583706511407502`, -2.2816658850370763`}, {
+       2.449541939927883, -3.9683241833272005`}, {
+       0.9914734770925081, -3.5689120870014466`}, {
+       0.13774750990118714`, -1.4784120650006223`}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{1.4760691987473258`, 0.01161216775513882}, {
+       2.632858594545085, -1.2359872895686437`}, {
+       2.7539562955343166`, -3.124995034182138}, {
+       1.7205077085101956`, -3.7686181351643233`}, {
+       0.5646104934968477, -2.5236620760010346`}, {
+       0.4412696847232094, -0.6324395176950668}}]}, 
+     {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{2.0544638966462054`, -0.6121875609067524}, {
+       2.6934074450397008`, -2.180491161875391}, {
+       2.2372320020222562`, -3.4468065846732308`}, {
+       1.1425591010035216`, -3.146140105582679}, {
+       0.5029400891100285, -1.5780507968480508`}, {
+       0.9586694417352676, -0.31041367496996397`}}]}, 
+     {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{2.373935670842953, -1.3963393613910715`}, {
+       2.4653197235309783`, -2.813648873274311}, {
+       1.689895551512889, -3.296473345127955}, {
+       0.8227495950567751, -2.3620954512153647`}, {
+       0.730804765422648, -0.9442322359090074}, {
+       1.5065666691907365`, -0.4613006179383582}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{2.4196276971869657`, -2.104994117332691}, {
+       2.0776076375219334`, -3.055061109201133}, {
+       1.256322573284832, -2.8292843981716596`}, {
+       0.7767771802397117, -1.653163843562186}, {
+       1.1186857173066922`, -0.7027664269236829}, {
+       1.9402511700168448`, -0.9288199896647149}}]}}], ",", 
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{3.1947446505256414`, 9.475948850534062}, {
+       6.316546600779205, -7.7524988900473035`}, {
+       4.255185360356762, -9.049497088181504}, {
+       0.9088173124217142, -9.958616926694317}, {-9.820905875882278, \
+-1.8840933567795783`}, {-8.97213689621745, 
+       4.415966430526112}, {-2.0530083100599934`, 9.786989163109594}}]}, 
+     {RGBColor[0.06666666666666667, 0.06666666666666667, 0.06666666666666667],
+       EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.7556456256524235`, 0.8617249802433791}, {
+       5.2858659805679835`, -8.400997989114403}, {
+       2.5820013363892382`, -9.504057007437911}, {-4.456044281730282, \
+-5.921355141736948}, {-9.396521386049864, 
+       1.2659365368732667`}, {-5.512572603138722, 7.101477796817853}, {
+       0.570868170232824, 9.631469006821828}}]}, 
+     {RGBColor[
+      0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.0207558031102035`, -3.7696365044355122`}, {
+       3.933933658478611, -8.952527498276158}, {-0.9370214726705219, \
+-7.712706074587429}, {-6.926282833890073, -2.3277093024318405`}, \
+{-7.454546994594293, 4.18370716684556}, {-2.4708522164529487`, 
+       8.36647340181984}, {2.663256897942624, 5.246596993532603}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.477344730794407, -6.361082001355835}, {
+       1.4984560929040445`, -8.332616786431794}, {-3.9316521532802975`, \
+-5.020207688509635}, {-7.190414914242183, 
+       0.9279989322068596}, {-4.962699605523621, 6.2750902843327}, {
+       0.09620234074483758, 6.806535197676222}, {3.8420063505264137`, 
+       0.7384802445485454}}]}, 
+     {RGBColor[
+      0.26666666666666666`, 0.26666666666666666`, 0.26666666666666666`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       2.9879004118492256`, -7.346849393893814}, {-1.2165980301881265`, \
+-6.676412237470714}, {-5.56103353376124, -2.0461043781513877`}, \
+{-6.076557259882902, 3.60154460826978}, {-2.433248632389392, 
+       6.540812741004461}, {1.9691043456356256`, 3.772507721112384}, {
+       4.159675540660411, -2.811300878403645}}]}, 
+     {RGBColor[0.3333333333333333, 0.3333333333333333, 0.3333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       0.8856511908305496, -7.011630815682264}, {-3.3888157819746834`, \
+-4.361258307811051}, {-5.818795396822071, 
+       0.7777201150591961}, {-4.254902946136147, 
+       5.071178674637121}, {-0.2320721433768831, 5.156660231058423}, {
+       3.064389943148018, 0.4806034213543695}, {
+       3.573787976254818, -5.079075136148729}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.2515822955720668`, -5.686444561746658}, \
+{-4.603805589398377, -1.7917690963759272`}, {-5.036849171479108, 
+       2.9244493948481587`}, {-2.243487544756515, 5.113919452847772}, {
+       1.4161588998855676`, 2.818631826206396}, {
+       3.319088959701418, -2.29923585739718}, {
+       2.2297195835426837`, -6.045352975915497}}]}, 
+     {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-2.927693942485222, -3.7391068290612925`}, \
+{-4.8203273804387425`, 0.5663401492361158}, {-3.640168358117812, 
+       4.019184423847966}, {-0.4136643224354737, 3.966275639527084}, {
+       2.367623929793493, 0.2596979844046081}, {
+       2.7744042716220507`, -4.172294416656339}, {
+       0.48906864398530847`, -5.8658987688310775`}}]}, 
+     {RGBColor[0.5333333333333333, 0.5333333333333333, 0.5333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-3.8740106614619823`, -1.5863833399125884`}, \
+{-4.230247869278277, 2.2927622865420405`}, {-2.026916340276643, 
+       3.992730031687525}, {0.9769798036790096, 2.112986811965846}, {
+       2.571014100707772, -1.9562982161258653`}, {
+       1.6317364578036795`, -5.019096592743708}, {-1.2193126492499569`, \
+-4.802502798946185}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-4.05212926537013, 
+       0.35318947331472605`}, {-3.1285821047774602`, 
+       3.1427461591147825`}, {-0.5249682682988166, 3.052858421826685}, {
+       1.7739969521933907`, 0.07834429791999031}, {
+       2.1013752792557256`, -3.4876974044347864`}, {
+       0.2062119042768613, -4.910799695844947}, {-2.5466616553559698`, \
+-3.194443069429387}}]}, 
+     {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-3.590355685073795, 
+       1.7479678162147543`}, {-1.8267751865381383`, 3.097802290470734}, {
+       0.624514341947287, 1.5656013598733378`}, {
+       1.9376861157245582`, -1.704676553257398}, {
+       1.1537935917662936`, -4.199248550139867}, {-1.1702248755395543`, \
+-4.052621382637167}, {-3.29939546036305, -1.4206267980573304`}}]}, 
+     {RGBColor[0.7333333333333333, 0.7333333333333333, 0.7333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-2.7085654358059665`, 
+       2.422885053342744}, {-0.6011304222954257, 2.331701825172036}, {
+       1.2811002288359226`, -0.06953759669203008}, {
+       1.5457398537454259`, -2.9519625516986325`}, {-0.008215641886630376, \
+-4.125934966388517}, {-2.234810167951302, -2.7366240903472487`}, \
+{-3.4448755727184226`, 0.16367050907871195`}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.654847929050696, 2.37729343925739}, {
+       0.33998490327024844`, 1.131082114240003}, {
+       1.4134200412906743`, -1.5107500741953312`}, {
+       0.7687621059293978, -3.5389487590435746`}, {-1.1215129049189663`, \
+-3.4312795283678827`}, {-2.8398428703348624`, -1.2864767906342685`}, \
+{-3.0767205042621946`, 1.293277781210728}}]}, 
+     {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.6574315128902238, 1.7541877767486964`}, {
+       0.8767024722804614, -0.18983397997766416`}, {
+       1.091091073610036, -2.524849416619453}, {-0.17637539949478426`, \
+-3.4851141437057285`}, {-1.9806778876269142`, -2.3588781595010757`}, \
+{-2.9582816872985287`, 0.0034004952882297212`}, {-2.3657842166564453`, 
+       1.835285610234059}}]}, 
+     {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.10963547969511878`, 0.7821768983855162}, {
+       0.9838967729452488, -1.3573416982985584`}, {
+       0.4573578370576259, -3.0049817801625904`}, {-1.0785266435608492`, \
+-2.921996151603402}, {-2.4694797874627215`, -1.177738832106423}, \
+{-2.662032951977487, 0.9193430527611444}, {-1.5116078647733346`, 
+       1.7947366934913775`}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.5467661263201837, -0.28758239995652113`}, {
+       0.7206273050014373, -2.1811617392305744`}, {-0.31058440325161163`, \
+-2.963488965882996}, {-1.7740032155117853`, -2.0498674918549122`}, \
+{-2.5657563697201042`, -0.12919788967263934`}, {-2.0868204083754107`, 
+       1.357039873126261}, {-0.7009861925391079, 1.2884567959384468`}}]}}], 
+   ",", 
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{3.2955015745711953`, 9.441380692038573}, {
+       6.401537574990991, -7.68246813699728}, {
+       6.394749664743174, -7.688119192966968}, {
+       3.1050545236077474`, -9.505715985943565}, {
+       2.1456152042544967`, -9.767104760125793}, {-6.090050171255809, \
+-7.93166369128111}, {-9.815245367441179, -1.9133631063978611`}, \
+{-1.039100187707482, 9.945867021024677}}]}, 
+     {RGBColor[0.06666666666666667, 0.06666666666666667, 0.06666666666666667],
+       EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.848519574781093, 0.8794562775206463}, {
+       6.398143619867083, -7.685293664982124}, {
+       4.749902094175461, -8.596917589455266}, {
+       2.625334863931122, -9.636410373034678}, {-1.9722174835006563`, \
+-8.849384225703451}, {-7.952647769348494, -4.922513398839485}, \
+{-5.427172777574331, 4.016251957313408}, {1.1282006934318567`, 
+       9.693623856531625}}]}, 
+     {RGBColor[
+      0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.623331597324088, -3.402918693730739}, {
+       5.574022857021272, -8.141105627218696}, {
+       3.6876184790532913`, -9.116663981244972}, {
+       0.32655869021523276`, -9.242897299369066}, {-4.962432626424575, \
+-6.885948812271469}, {-6.689910273461413, -0.45313072076303884`}, \
+{-2.149486042071237, 6.854937906922516}, {2.988360134106475, 
+       5.286540067026135}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.59867722717268, -5.772012160474718}, {
+       4.630820668037281, -8.628884804231834}, {
+       2.007088584634262, -9.179780640307019}, {-2.317936968104671, \
+-8.064423055820267}, {-5.8261714499429935`, -3.6695397665172536`}, \
+{-4.419698157766325, 3.2009035930797385`}, {0.4194370460176189, 
+       6.070738986974326}, {4.305845865715281, 0.9418106866476981}}]}, 
+     {RGBColor[
+      0.26666666666666666`, 0.26666666666666666`, 0.26666666666666666`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.114748947604981, -7.200448482353276}, {
+       3.3189546263357714`, -8.904332722269427}, {-0.1554241917352046, \
+-8.622101848063643}, {-4.0720542090238325`, -5.86698141116876}, \
+{-5.122934803854659, -0.23431808671875753`}, {-2.000130555874353, 
+       4.635821290027032}, {2.3626414558664504`, 3.506274836811012}, {
+       4.952261546443981, -2.41510073691351}}]}, 
+     {RGBColor[0.3333333333333333, 0.3333333333333333, 0.3333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.216851786970376, -8.052390602311352}, {
+       1.5817652173002834`, -8.763217285166535}, {-2.1137392003795186`, \
+-7.244541629616202}, {-4.597494506439245, -3.050649748943759}, \
+{-3.561532679864506, 2.200751601654137}, {0.1812554499960486, 
+       4.071048063419022}, {3.6574515011552156`, 0.545587049948751}, {
+       5.033505247024481, -4.807774609633393}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       2.8993085021353298`, -8.407803943738944}, {-0.2659869915396176, \
+-8.003879457391369}, {-3.3556168534093818`, -5.147595689279981}, \
+{-4.079513593151876, -0.42494907364481094`}, {-1.6901386149342288`, 
+       3.1358998325365794`}, {1.919353475575632, 2.3083175566838867`}, {
+       4.345478374089848, -2.131093779842321}, {
+       4.625178516997428, -6.430082605972372}}]}, 
+     {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       1.316660755297856, -8.205841700565156}, {-1.8108019224744996`, \
+-6.575737573335674}, {-3.7175652232806287`, -2.7862723814623958`}, \
+{-2.8848261040430523`, 1.3554753794458843`}, {0.11460743032070164`, 
+       2.722108694610233}, {3.13241592483274, 0.08861188842078294}, {
+       4.485328445543638, -4.280588192907347}, {
+       3.762243509566379, -7.418943274855659}}]}, 
+     {RGBColor[0.5333333333333333, 0.5333333333333333, 0.5333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.2470705835883218, -7.390789636950415}, \
+{-2.764183572877564, -4.681004977399035}, {-3.3011956636618405`, \
+-0.7153985010082557}, {-1.3851093368611753`, 2.038792037028059}, {
+       1.6235116775767209`, 1.405360291515508}, {
+       3.8088721851881893`, -2.095988152243282}, {
+       4.123785977555009, -5.849765733881503}, {
+       2.5394521324321175`, -7.812392487710407}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.5056270782329428`, -6.035897307174725}, \
+{-3.0326896182697025`, -2.6982017392036455`}, {-2.3431525002615077`, 
+       0.6616967680099015}, {0.11920117035777278`, 1.7220761642717832`}, {
+       2.716191931382455, -0.34531393036388713`}, {
+       3.9663290813715992`, -3.9728769430623925`}, {
+       3.3316190549935634`, -6.8310791107959545`}, {
+       1.146190774421898, -7.601591062330411}}]}, 
+     {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-2.269158348251323, -4.367049523189185}, \
+{-2.687921059265605, -1.018252485596872}, {-1.1119756649518675`, 
+       1.1918864661408424`}, {1.4176965508701138`, 0.688381116953948}, {
+       3.341260506377027, -2.1590954367131396`}, {
+       3.6489740681825813`, -5.401978026929173}, {
+       2.2389049147077307`, -7.216335086563182}, {-0.17971815190552243`, \
+-6.818744184752568}}]}, 
+     {RGBColor[0.7333333333333333, 0.7333333333333333, 0.7333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-2.478539703758464, -2.6926510043930287`}, \
+{-1.8999483621087363`, 0.0868169902719852}, {0.15286044295912316`, 
+       0.9401337915473952}, {2.3794785286235705`, -0.7353571598795958}, {
+       3.495117287279804, -3.7805367318211562`}, {
+       2.943939491445156, -6.309156556746178}, {
+       1.0295933814011042`, -7.017539635657875}, {-1.2244382500784226`, \
+-5.592896853970876}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-2.1892440329336003`, -1.3029170070605218`}, \
+{-0.8735439595748066, 0.5134753909096902}, {1.2661694857913468`, 
+       0.10238831583389968`}, {2.937297907951687, -2.2579469458503763`}, {
+       3.21952838936248, -5.044846644283667}, {
+       1.9867664364231301`, -6.663348096202027}, {-0.09742243433865916, \
+-6.305218244814375}, {-1.8514889769184433`, -4.142773929181953}}]}, 
+     {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.5313939962542034`, -0.3947208080754158}, {
+       0.19631276310827012`, 0.30793185337179496`}, {
+       2.1017336968715172`, -1.0777793150082382`}, {
+       3.0784131486570834`, -3.6513967950670216`}, {
+       2.603147412892805, -5.854097370242847}, {
+       0.9446720010422355, -6.484283170508201}, {-0.9744557056285512, \
+-5.223996086998164}, {-2.020366504926022, -2.7228454681212373`}}]}, 
+     {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.6675406165729666, -0.04339447735181043}, {
+       1.1490232299898937`, -0.3849237308182216}, {
+       2.5900734227643003`, -2.36458805503763}, {
+       2.8407802807749443`, -4.752747082654935}, {
+       1.7739097069675203`, -6.169190270375524}, {-0.01489185229315787, \
+-5.854139628753183}, {-1.4974111052772865`, -3.9734207775597006`}, \
+{-1.7758802505901126`, -1.5587831380983266`}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{0.24074130670846355`, -0.21415910408501604`}, {
+       1.869548326377097, -1.3747558929279258`}, {
+       2.7154268517696223`, -3.5586675688462823`}, {
+       2.307344993871232, -5.460968676515229}, {
+       0.8795089273371812, -6.011664949564354}, {-0.7561514787852222, \
+-4.913780203156442}, {-1.6366456779336995`, -2.7661019578290134`}, \
+{-1.2217104335815396`, -0.8010888077250685}}]}}], ",", 
+   GraphicsBox[{
+     {RGBColor[0., 0., 0.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{3.8811398633288525`, 9.216113788429464}, {4.91694928680792,
+        8.707675333345811}, {8.669052508717165, 4.984729541419938}, {
+       9.412804923272333, 3.376255836932404}, {
+       9.927815939632872, -1.1993626093769463`}, {
+       5.270869120115778, -8.498113832999056}, {-6.856097021011291, \
+-7.279693237937991}, {-9.177788717884685, 
+       3.970918565000873}, {-6.362466059673684, 7.714857460737718}}]}, 
+     {RGBColor[0.06666666666666667, 0.06666666666666667, 0.06666666666666667],
+       EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.399044575068387, 8.961894560887638}, {6.793000897762543, 
+       6.846202437382875}, {9.040928715994749, 4.180492689176171}, {
+       9.670310431452602, 1.0884466137777289`}, {
+       7.599342529874325, -4.848738221188001}, {-0.7926139504477563, \
+-7.888903535468524}, {-8.016942869447988, -1.654387336468559}, \
+{-7.770127388779184, 5.842888012869295}, {-1.2406630981724158`, 
+       8.465485624583591}}]}, 
+     {RGBColor[
+      0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.596022736415465, 7.904048499135256}, {7.916964806878646, 
+       5.513347563279523}, {9.355619573723676, 2.63446965147695}, {
+       8.634826480663463, -1.8801458037051362`}, {
+       3.4033642897132843`, -6.368820878328263}, {-4.4047784099478715`, \
+-4.771645435968542}, {-7.893535129113586, 
+       2.094250338200368}, {-4.5053952434758004`, 7.154186818726443}, {
+       1.5791907384479855`, 8.713690092735614}}]}, 
+     {RGBColor[0.2, 0.2, 0.2], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{6.7564937716470554`, 6.70869803120739}, {8.63629219030116, 
+       4.073908607378236}, {8.99522302719357, 0.37716192388590686`}, {
+       6.019095385188374, -4.1244833410167}, {-0.5007070601172936, \
+-5.570233157148403}, {-6.1491567695307285`, -1.3386975488840869`}, \
+{-6.1994651862946935`, 4.624218578463406}, {-1.4631022525139075`, 
+       7.933938455731029}, {3.5876067374317255`, 8.308869295935436}}]}, 
+     {RGBColor[
+      0.26666666666666666`, 0.26666666666666666`, 0.26666666666666666`], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{7.6963929809741085`, 5.391303319292813}, {
+       8.815757608747365, 2.2255352656320713`}, {
+       7.5071592061909715`, -1.8736607085653965`}, {
+       2.75919416253554, -4.847358249082552}, {-3.324931914824011, \
+-3.4544653530162446`}, {-6.174310977912711, 
+       1.6427605147896596`}, {-3.8312837194043006`, 6.279078517097218}, {
+       1.062252242458909, 8.121403875833233}, {5.172050254539391, 
+       7.508783663571412}}]}, 
+     {RGBColor[0.3333333333333333, 0.3333333333333333, 0.3333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{8.256075294860736, 3.8084192924624425`}, {8.16145840746917,
+        0.1759372785333374}, {
+       5.133176684363256, -3.360509478823974}, {-0.2828688761442355, \
+-4.150911801049398}, {-4.749621446368361, -0.9058524191132925}, \
+{-5.002797348658506, 3.9609195159434387`}, {-1.3845157384726958`, 
+       7.200241196465225}, {3.11715124849915, 7.815093769702322}, {
+       6.43422161775675, 6.450043491432113}}]}, 
+     {RGBColor[0.4, 0.4, 0.4], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{8.208766851164953, 1.99217828549789}, {
+       6.647317545916213, -1.5922861001453184`}, {
+       2.42515390410951, -3.7557106399366864`}, {-2.5162451612562986`, \
+-2.5283821100813455`}, {-4.876209397513433, 
+       1.5275335484150732`}, {-3.193656543565601, 5.580580356204331}, {
+       0.866317755013227, 7.5076674830837735`}, {4.77568643312795, 
+       7.132568630567217}, {7.345148456308743, 5.129231391947277}}]}, 
+     {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{7.428042198540583, 0.19994609267628582`}, {
+       4.536235725012862, -2.6739983700410024`}, {-0.04554562857339439, \
+-3.142046375009016}, {-3.696227279384866, -0.5004242808331362}, \
+{-4.034932970539517, 3.5540569523097023`}, {-1.1636693942761869`, 
+       6.544123919644052}, {2.8210020940705887`, 7.320118056825495}, {
+       6.060417444718347, 6.130900011257247}, {7.776957653736847, 
+       3.5607048387225837`}}]}, 
+     {RGBColor[0.5333333333333333, 0.5333333333333333, 0.5333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{5.982138961776722, -1.2370261386823582`}, {
+       2.2453450482197335`, -2.908022372525009}, {-1.8708864539791301`, \
+-1.821235327921076}, {-3.8655801249621913`, 
+       1.5268163357382831`}, {-2.599301182407852, 5.049090435976877}, {
+       0.8286663498972009, 6.932120988234773}, {4.440709769394468, 
+       6.725509034041371}, {6.918687549227597, 4.845802424989915}, {
+       7.602499926138715, 1.8803254656994348`}}]}, 
+     {RGBColor[0.6, 0.6, 0.6], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{4.113742004998228, -2.0725242556036836`}, {
+       0.18722929712030167`, -2.3646288502230424`}, {-2.868233289470661, \
+-0.14720949609139644`}, {-3.2324406536850216`, 
+       3.2879533858575805`}, {-0.8853174162553256, 5.990605712105825}, {
+       2.6346880596458346`, 6.828815011138072}, {5.679698659311033, 
+       5.785655729515643}, {7.2605937376831555`, 3.363063945344675}, {
+       6.792319443957719, 0.3216496635085383}}]}, 
+     {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       2.150485651059265, -2.2185765529133628`}, {-1.3405019961751796`, \
+-1.2559191731572195`}, {-3.050336971577841, 
+       1.570371944883092}, {-2.0588790349701735`, 4.639279548981703}, {
+       0.8746853216952546, 6.409710361621949}, {4.157193359478434, 
+       6.3072353703268575`}, {6.470146198497094, 4.574359837430158}, {
+       7.0264565908204375`, 1.8423568044266065`}, {
+       5.453030724477973, -0.8754372960475727}}]}, 
+     {RGBColor[0.7333333333333333, 0.7333333333333333, 0.7333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{
+       0.40499182744204265`, -1.7372478630352912`}, {-2.19541948387651, 
+       0.15722638586293625`}, {-2.5546080032740073`, 
+       3.1048257469323977`}, {-0.5920968566374595, 5.524494955301826}, {
+       2.5159393405868444`, 6.358472865974403}, {5.313669778987764, 
+       5.440797603878508}, {6.748301394658766, 3.2083583209283826`}, {
+       6.239743657649205, 0.4834597541895169}, {
+       3.801758187768619, -1.5470069244804678`}}]}, 
+     {RGBColor[0.8, 0.8, 0.8], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-0.8952138282172337, -0.7900107385861774}, \
+{-2.3750137435752587`, 1.631026066397667}, {-1.5733524299557333`, 
+       4.314660351117112}, {0.9619212419746925, 5.941483910638114}, {
+       3.9148045597873042`, 5.899635234926455}, {6.030985586823265, 
+       4.3245779624034455`}, {6.4940225261539855`, 1.8459090375589498`}, {
+       5.0207509227089115`, -0.5317735851454755}, {
+       2.103375007605331, -1.6421273937578795`}}]}, 
+     {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.6351137858962463`, 
+       0.4205076639057448}, {-1.9741830867654961`, 
+       2.9728432087573897`}, {-0.3057155939905204, 5.128072130877613}, {
+       2.4383629008809984`, 5.920559572782285}, {4.972895073305285, 
+       5.11210659866495}, {6.262504056488625, 3.0852434999811975`}, {
+       5.7573867244314485`, 0.6570677262067371}, {
+       3.5620629651571214`, -1.0869504894516775`}, {
+       0.6040805896940485, -1.2160690661720284`}}]}, 
+     {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+      EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.8046484363308712`, 
+       1.6966754363315673`}, {-1.1399493403780083`, 4.050457669817502}, {
+       1.066323653445239, 5.524315851829948}, {3.7056289870931414`, 
+       5.516333085723618}, {5.617699564896955, 4.098675049323074}, {
+       6.009945390460037, 1.8711556130939673`}, {
+       4.659724844794285, -0.21494138162247017`}, {
+       2.083071777425585, -1.151509777811853}, {-0.515516598101099, \
+-0.3977807011331418}}]}, 
+     {RGBColor[1., 1., 1.], EdgeForm[{GrayLevel[0], Thickness[Tiny]}], 
+      PolygonBox[{{-1.4722988883544397`, 
+       2.8735665530745345`}, {-0.03681284346638469, 4.7873867608237255`}, {
+       2.38597632026919, 5.520324468776783}, {4.661664275995048, 
+       4.807504067523346}, {5.813822477678496, 2.9849153312085206`}, {
+       5.334835117627161, 0.8281071157357486}, {
+       3.3713983111099353`, -0.6832255797171616}, {
+       0.7837775896622431, -0.7746452394724974}, {-1.1600825172159852`, 
+       0.6494473675992127}}]}}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.693738523499879*^9, 3.693738541666185*^9}, 
+   3.6937391637956963`*^9, 3.6937391970395327`*^9, 3.693739350276568*^9, 
+   3.6937394161326237`*^9, 3.693739840918013*^9, {3.693739977577764*^9, 
+   3.693739991578547*^9}, {3.693740067803081*^9, 3.693740162722136*^9}, {
+   3.6937401973962097`*^9, 3.6937402372562933`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{839, 842},
+WindowMargins->{{265, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 882, 25, 54, "Input"],
+Cell[1465, 49, 239, 5, 342, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1741, 59, 896, 14, 32, "Input"],
+Cell[2640, 75, 6529, 118, 342, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9206, 198, 19, 0, 64, "Section"],
+Cell[9228, 200, 92, 1, 32, "Input"],
+Cell[9323, 203, 2358, 63, 159, "Input"],
+Cell[11684, 268, 2174, 51, 159, "Input"],
+Cell[CellGroupData[{
+Cell[13883, 323, 204, 4, 32, "Input"],
+Cell[14090, 329, 901, 30, 45, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15028, 364, 156, 3, 32, "Input"],
+Cell[CellGroupData[{
+Cell[15209, 371, 93, 1, 24, "Print"],
+Cell[15305, 374, 95, 1, 24, "Print"],
+Cell[15403, 377, 93, 1, 24, "Print"],
+Cell[15499, 380, 93, 1, 24, "Print"],
+Cell[15595, 383, 93, 1, 24, "Print"],
+Cell[15691, 386, 93, 1, 24, "Print"],
+Cell[15787, 389, 9079, 247, 24, "Print"]
+}, Open  ]],
+Cell[24881, 639, 9082, 247, 32, "Output"]
+}, Open  ]],
+Cell[33978, 889, 2016, 47, 117, "Input"],
+Cell[CellGroupData[{
+Cell[36019, 940, 141, 2, 32, "Input"],
+Cell[36163, 944, 1493, 39, 75, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37693, 988, 227, 6, 32, "Input"],
+Cell[37923, 996, 416, 8, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38376, 1009, 1521, 37, 138, "Input"],
+Cell[39900, 1048, 40750, 690, 482, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

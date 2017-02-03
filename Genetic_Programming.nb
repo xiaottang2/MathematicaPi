@@ -1,0 +1,1039 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34721,       1031]
+NotebookOptionsPosition[     30986,        916]
+NotebookOutlinePosition[     32114,        956]
+CellTagsIndexPosition[     32014,        950]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "Genetic Programming with ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"]
+}], "Title",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+version 1.0beta1
+by Jonathan Kleid
+Son Of a Bit Software
+\[Copyright]1994\
+\>", "Name",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ CellGroupingRules->{"TitleGrouping", 19},
+ TextAlignment->Center,
+ ImageSize->{413, 255},
+ ImageMargins->{{34, Inherited}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Background", "Section",
+ CellGroupingRules->{"TitleGrouping", 30},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "(All of the work in this document is directly related to the book",
+ StyleBox["Genetic Algorithms",
+  FontSlant->"Italic"],
+ " by John Koza. [Koza 1])\n\nMy interest in this topic began when I was \
+reading ",
+ StyleBox["Mastering Mathematica",
+  FontSlant->"Italic"],
+ " by John W. Gray, and I saw following quote (pg 169):\n\n\" ",
+ StyleBox["'",
+  FontSlant->"Italic"],
+ "Pascal is for building pyramids\[LongDash]imposing, breathtaking, static \
+structures built by armies pushing heavy blocks into place. Lisp is for \
+building organisms\[LongDash]imposing, breathtaking, dynamic structures built \
+by squads fitting fluctuating myriads of simpler organisms into place.'\n",
+ StyleBox["[Abelson].",
+  FontSlant->"Italic"],
+ "\n\t\t\t\t\t\t",
+ StyleBox["We, of course, intend to replace 'Pascal' by 'C' and 'Lisp' by \
+'Mathematica.'",
+  FontSlant->"Italic"],
+ " \".\n [Gray]\n \nBefore reading that, it had never occurred to me that ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " could be used for artificial intelligence. When I saw [Koza 1] in a \
+bookstore, I knew its Lisp-based contents could somehow be converted to ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ".\[LongDash]I just didn\[CloseCurlyQuote]t realize it would come so easily. \
+Keep in mind that I have absolutely no knowledge of Lisp, so all the \
+following is based on the text of [Koza 1], but not the Lisp programming \
+examples in the back."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[CellGroupData[{
+
+Cell["Who this is for", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "This is written for anyone interested in implementing Genetic Algorithms \
+with ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ".. You do not have to be an expert, but to understand this notebook you \
+should read at least the first few chapters of [Koza 1]. If there are any \
+other books that explain the purpose and theories behind Genetic Algorithms, \
+they will also do. Most of the code in this document will apply to any \
+problem involving Genetic Algorithms with little or no adaptation."
+}], "Text",
+ CellMargins->{{Inherited, 55}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["What is a Genetic Algorithm?", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "The purpose of this notebook is ",
+ StyleBox["not",
+  FontWeight->"Bold"],
+ " to explain Genetic Programming, but if you want a brief explanation:\n\
+Genetic Algorithms are tools to solve problems. They provide the computer \
+with a very intuitive, simple, and general way to solve problems from a very \
+wide range of possibilities. There are not very many steps to know, and the \
+major ones are:\n\n1. Creating an initial random population.\n2. Testing each \
+member of the population for fitness.\n3. Genetically breeding the most fit \
+members to produce a new generation.\n4. Repeating steps 2 and 3 until some \
+sort of goal or limit is reached.\n\nThe intermediate steps are described in \
+detail later, but these four are by far the most important to understand. \
+This whole process is know as natural selection."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}]
+}, Closed]]
+}, Closed]],
+
+Cell["Implementation", "Section",
+ CellChangeTimes->{{3.694169735280594*^9, 3.694169736034812*^9}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Creating an initial population", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+When creating the initial population, diversity is the most important thing \
+to encourage. It is relatively easy to prevent having duplicate members of \
+the population, but that does not insure diversity (I actually did not \
+include a checking function to ensure lack of duplicate members partly \
+because I usually use smaller populations). It is very easy to have many \
+individuals who are very similar, but different enough to pass an equality \
+check with their peers. I have found that to have the most diversity, the \
+individual\[Dash]producing function must be able to create individuals with \
+random depths and relationships of functions. There should be a consistent \
+random element for creating every aspect of each individual.
+
+Here is the basic function for creating a new population:\
+\>", "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+createRandomPop[maxLevels_,functionList_,varList_,numList_,popSize_,doPrint_]:\
+=   {
+\tinitPopulation = {},
+\tDo[ {If[doPrint == True, Print[i,\":\"] ],
+\t\tIf[Random[Integer,{1,2}] == 1,
+\t\tlevels = Random[Integer,{2,maxLevels}],
+\t\tlevels = maxLevels],
+\t\tnewIndividual = x,
+\tWhile[newIndividual == varList[[1]] || newIndividual == varList[[2]] || \
+newIndividual == 1, 
+\t\tcreateRandomExp[levels,functionList,varList, numList, doPrint]
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   ],
+\t\tinitPopulation = Append[initPopulation, newIndividual]},
+\t\t\t\t\t\t\t{i, 1, popSize}]
+\t\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "As you can see, this scheme uses global variables. I am aware of methods in \
+",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " which can easily hide variables to other functions, but I figured that it \
+was important to have functions that can easily exchange data and don't have \
+prototypes a mile long. The variables I chose to include in the prototypes \
+were those I thought would be necessary to use the function alone.\n",
+ StyleBox["maxLevels",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is the maximum depth and individual can be. I decided to determine the \
+depth in ",
+ StyleBox["this",
+  FontSlant->"Italic"],
+ " function so it can be possible later to use the ",
+ StyleBox["createRandomExp",
+  FontFamily->"Courier",
+  FontSize->12],
+ " function to control the exact depth. The array ",
+ StyleBox["functionList",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a list of functions that can be used in the creation of each \
+individual. The array ",
+ StyleBox["numList",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a list of the number of arguments allowed in each function. For example \
+if your function list looked like:"
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["functionList = {Plus, Abs}", "Input",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "then ",
+ StyleBox["varList",
+  FontFamily->"Courier",
+  FontSize->12],
+ " would be:"
+}], "Text",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["numList = {2, 1}", "Input",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "because addition normally requres two arguments and ",
+ StyleBox["Abs",
+  FontFamily->"Courier",
+  FontSize->12],
+ " only requires one. From the little I know of Lisp, I know that ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " functions internally are very similat to Lisp functions. In Lisp, Plus can \
+only have two arguments. So 1 + 2 + 3 must be written as (+1 (+2 3)). By \
+specifying \"2\" for the number of arguments for Plus, ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " is effectively simulating Lisp.\n\n",
+ StyleBox["varList",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is an array of the variables (the actual inputs) that can be used in each \
+individual. So if"
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ StyleBox["varList = {x, y}",
+  FontFamily->"ProFont",
+  FontWeight->"Bold"],
+ StyleBox["",
+  FontFamily->"Times",
+  FontSize->14]
+}], "Input",
+ ImageRegion->{{0, 1}, {0, 1}},
+ FontWeight->"Plain"],
+
+Cell[TextData[{
+ "\nThen ",
+ StyleBox["x",
+  FontFamily->"Courier",
+  FontSize->12],
+ " and ",
+ StyleBox["y",
+  FontFamily->"Courier",
+  FontSize->12],
+ " are the two variables that are used for every individual created.\n\n",
+ StyleBox["popSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is the number of individuals to be created.\n\n",
+ StyleBox["doPrint",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a boolean value that represents whether or not display each individual \
+as it is created. Since each individual is stored in an array, a list can \
+easily be displayed later.\n\nBelow are the actual functions used for \
+creating new random individuals (referenced from ",
+ StyleBox["createRandomPop",
+  FontFamily->"Courier",
+  FontSize->12],
+ "). It is not important to know how they work, because the prototype of ",
+ StyleBox["createRandomExp",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is very similar to that of ",
+ StyleBox["createRandomPop",
+  FontFamily->"Courier",
+  FontSize->12],
+ ". It is only important to know that they create a global named ",
+ StyleBox["newIndividual",
+  FontFamily->"Courier",
+  FontSize->12],
+ " (which is stored in an array by ",
+ StyleBox["createRandomPop",
+  FontFamily->"Courier",
+  FontSize->12],
+ ")."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+createRandomExp[levels_,functionList_,varList_,numList_,doPrint_]:=  {
+\tpartNumber = Random[Integer,{1,Length[functionList]}],
+\tfunctionPart = functionList[[ partNumber ]],
+\tnumberArgs = numList[[ partNumber ]], 
+\targumentPart1 = varList[[ Random[Integer,{1,Length[varList]}] ]],
+\targumentPart2 = varList[[ Random[Integer,{1,Length[varList]}] ]],
+\tIf[numberArgs == 1,\tfullFunction = functionPart[argumentPart1],
+\t\t\t\tfullFunction = functionPart[argumentPart1,argumentPart2]\t
+\t\t\t\t\t\t\t],
+\tnewIndividual = fullFunction,
+\t\tDo[ addPart[newIndividual,functionList,varList,numList]          
+\t\t\t\t\t\t,{i,1,(levels - 2)}]
+\t\t\t\t\t   If[doPrint == True, Print[newIndividual]]
+\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+addPart[exp_,functionList_,varList_,numList_]:=  {
+\tgetPos[exp];,
+\tthePoint = {};,
+\tDo[ { 
+\tthePoint = Append[thePoint,partList[i] ]
+\t} , {i,1,(arrayLength)}
+\t\t\t\t\t\t\t\t];,
+\t\t\t\t\t\t\t\t
+\tthePoint = Delete[thePoint,0];,
+\t
+\tpartNumber = Random[Integer,{1,Length[functionList]}],
+\tfunctionPart = functionList[[ partNumber ]],
+\tnumberArgs = numList[[ partNumber ]], 
+\targumentPart1 = varList[[ Random[Integer,{1,Length[varList]}] ]],
+\targumentPart2 = varList[[ Random[Integer,{1,Length[varList]}] ]],
+\tIf[numberArgs == 1,\tfullFunction = functionPart[argumentPart1],
+\t\t\t\tfullFunction = functionPart[argumentPart1,argumentPart2]\t
+\t\t\t\t\t\t\t],
+\tnewIndividual = ReplacePart[exp,fullFunction, {thePoint}]
+
+\t\t\t\t\t 
+\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+getPos[exp_] := { Clear[partList];,
+\tplaceCounter=0;, partList[placeCounter] = -1;,
+\t\tcurExp = exp;, 
+\t\tWhile[Length[curExp] != 0, 
+\t\t{++placeCounter,
+\t\tpartList[placeCounter] = 
+\t\t\t\t\tRandom[Integer,{1,Length[curExp]}],
+\t\t
+\t\tcurExp = curExp[[partList[placeCounter] ]]
+\t\t\t\t\t};],arrayLength = (placeCounter)}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "The result of all that is a new array called ",
+ StyleBox["initPopulation",
+  FontFamily->"Courier",
+  FontSize->12],
+ ". It has as many members as in ",
+ StyleBox["popSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " (in the function ",
+ StyleBox["createRandomPop",
+  FontFamily->"Courier",
+  FontSize->12],
+ ")"
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["The Fitness Test", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "The one major element that differs from problem to problem is the fitness \
+test\[LongDash]one must be devised for each problem individually. The \
+following function calls ",
+ StyleBox["fitnessTest",
+  FontFamily->"Courier",
+  FontSize->12],
+ " for each member of the population and records the score into an array. ",
+ StyleBox["fitnessTest",
+  FontFamily->"Courier",
+  FontSize->12],
+ " must produce a global variable called ",
+ StyleBox["fitnessTestScore",
+  FontFamily->"Courier",
+  FontSize->12],
+ ", and optionally ",
+ StyleBox["numHits. numHits",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a count of the number succesful attempts. It only applies if the ",
+ StyleBox["fitnessTest",
+  FontFamily->"Courier",
+  FontSize->12],
+ " has a timeout or some other type of ceiling."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+testAll[popArray_,popSize_,testDepth_, doPrint_]:= {
+\trawFitnessArray = {},
+\thitsArray = {},
+\tDo[{Print[popArray[[iter]]],
+\t\tfitnessTest[popArray[[iter]],testDepth, False],
+\t\trawFitnessArray = Append[rawFitnessArray, fitnessTestScore],
+\t\thitsArray = Append[hitsArray, numHits],
+\t\tIf[doPrint == True, {Print[\"Hits: \", numHits],
+\t\t\t\t\t\t\tPrint[iter,\": \", rawFitnessArray[[iter]]\t
+\t\t\t\t\t\t\t ]} ]}
+\t\t\t,{iter,1,popSize}]
+\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.694169949910081*^9, 3.694169950270319*^9}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ StyleBox["arrayOfOrganisms",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is the array created by ",
+ StyleBox["createRandomPop",
+  FontFamily->"Courier",
+  FontSize->12],
+ " (described above). doPrint is a boolean value which is used to optionally \
+display each score as it is tested. ",
+ StyleBox["popSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is the size of the population. ",
+ StyleBox["testAll",
+  FontFamily->"Courier",
+  FontSize->12],
+ " produces ",
+ StyleBox["rawFitnessArray",
+  FontFamily->"Courier",
+  FontSize->12],
+ " which contains the fitness scores of each individual. testDepth is an \
+optional input variable. This is can be used if there are variables in the \
+fitness test itself which may vary form generation to generation.\n\nThe \
+following function figures out which function scored the best on the fitness \
+test (best of generation). It also determines the total of scores and the \
+adjusted and normalized fitnesses for each individual . This function assumes \
+that a lower score is better, but it can be easily adjusted if the opposite \
+is true."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ CellChangeTimes->{{3.694169948484969*^9, 3.694169948876314*^9}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+analyzeRawFitness[rawFitnessArray_,popSize_] :=\t{
+\tadjustedFitnessArray = {},
+\tnormalizedFitnessArray = {},
+\tfitnessTotal = rawFitnessArray[[1]],
+\tbestOfGeneration = rawFitnessArray[[1]],
+\tbestOfGenNum = 1,
+\tDo[{fitnessTotal += rawFitnessArray[[i]],
+\t\tIf[rawFitnessArray[[i]] < bestOfGeneration,{
+\t\t\tbestOfGeneration = rawFitnessArray[[i]],
+\t\t\tbestOfGenNum = i}]}, {i,2,popSize}],
+\tadjustedTotal = 0,
+\tDo[{adjustedTotal += (1 / (1 + rawFitnessArray[[i]])),
+\t\tadjustedFitnessArray = Append[adjustedFitnessArray, (1 / (1 + \
+rawFitnessArray[[i]]))]},
+\t\t\t\t\t\t\t\t\t\t\t{i,1,popSize}],
+\tDo[normalizedFitnessArray = Append[normalizedFitnessArray, \
+(adjustedFitnessArray[[i]] / adjustedTotal)],
+\t\t\t\t\t\t\t\t\t\t\t{i,1,popSize}]
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+Depending on the type of result rawFitnessArray contains, it may need to be \
+adjusted. Once again, this function assumes lower is better, but it can be \
+easily adjusted (if necessary) by adding a constant to the raw score.\
+\>", "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Genetic Crossover", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "Of course, genetic crossover is the basis of Genetic Algorithms. A bad \
+crossover function will produce bad results for the entire set functions. I \
+have found the following crossover routines themselves to produce very \
+dependable and diverse results for equations with any level of inticracy and \
+size. They have been debugged intensly and revised many times.\n\nThe \
+following functions may not be as perfect as the actual crossover routines \
+(which are shown later) but they provide a basis for the batch processing of \
+a generation, after their fitness tests have been completed.\n\n",
+ StyleBox["createNewGeneration",
+  FontFamily->"Courier",
+  FontSize->12],
+ " takes as inputs the last generation computed, that generation's adjusted \
+fitness array, and the number of individuals in the array. All functions \
+necessary for crossover are called from this function."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+createNewGeneration[oldGeneration_,oldGenFitArray_,popSize_] := {
+numberOfInd = 0,
+newGeneration = {},
+While[numberOfInd < popSize, {
+\tpickToCross[oldGenFitArray, popSize],
+\tIf[numberOfPicks == 2, 
+\t\t{performCross[oldGeneration[[numberCross1]],oldGeneration[[numberCross2]] \
+],
+\t\t numberOfInd += 1, newGeneration = Append[newGeneration, newEx1],
+\t\t numberOfInd += 1, newGeneration = Append[newGeneration, newEx2] },
+\t\t{numberOfInd += 1, newGeneration = Append[newGeneration, \
+oldGeneration[[numberCross]]]}],
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t}]
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+This next function could probably be improved. I do not have a very good \
+understanding of how new individuals are chosen to breed, so at this point \
+each individual's relative adjusted fitness is simply compared to a random \
+number between 0 and 1 (and if it is lower than the random number it is \
+chosen). There is a one in ten chance that the individual chosen will simply \
+be copied over to the next generation; otherwise it is crossed over with \
+another individual.\
+\>", "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+pickToCross[arrayOfRelativeFitness_, popSize_] := {
+\tmeth = Random[Integer,{1,10}], 
+\tIf[meth == 1, cross = False, cross = True], 
+defined = False,
+While[defined == False,{
+\trawPick1 = Random[Integer,{1,popSize}],
+\tIf[arrayOfRelativeFitness[[rawPick1]] <= Random[],
+\t\t{defined = True, numberCross1 = rawPick1}]
+\t\t\t\t\t\t\t\t\t\t}],
+defined = False,
+If[cross == True,
+While[defined == False,{
+\trawPick2 = Random[Integer,{1,popSize}],
+\tIf[arrayOfRelativeFitness[[rawPick2]] <= Random[],
+\t\t{defined = True, numberCross2 = rawPick2}]
+\t\t\t\t\t\t\t\t\t\t}],
+\t\t\t\t\t\t\t\t\t\t],
+If[cross == True, numberOfPicks = 2, numberOfPicks = 1]
+
+\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Here are the crossover routines themselves:", "Text",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+performCross[exp1_,exp2_] := {
+\tIf[And[Head[exp1] != Integer,Head[exp2] != Integer,
+\t\t   Head[exp1] != Symbol,Head[exp2] != Symbol,
+\t\t   Head[exp1] != Complex, Head[exp2] != Complex
+\t\t   ],
+\t{
+\tdoCheck[],
+\tcrossOver[exp1,exp2]
+\t},
+\t{newEx1 = exp1, newEx2 = exp2}, {doCheck[], crossOver[exp1,exp2]} ]
+\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "The inputs are simply the two equations you want to cross over.\nBelow are \
+the functions ",
+ StyleBox["performCross",
+  FontFamily->"Courier",
+  FontSize->12],
+ " calls. How it works is not important, just realize that it creates two new \
+individuals named ",
+ StyleBox["newEx1",
+  FontFamily->"Courier",
+  FontSize->12],
+ " and ",
+ StyleBox["newEx2.",
+  FontFamily->"Courier",
+  FontSize->12]
+}], "Text",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+doCheck[] := 
+\t{
+\tagain = True;
+\tWhile[again == True, 
+\t\tIf[Head[exp1] == ReplacePart, exp1 = exp1[[1]], again = False, again = \
+False]
+\t\t]
+\tagain = True;
+\tWhile[again == True, 
+\t\tIf[Head[exp2] == ReplacePart, exp2 = exp2[[1]], again = False, again = \
+False] 
+\t\t]
+\t} \
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+crossOver[exp1_,exp2_]:=  {
+\tClear[arrayLength,crossOverPointexp2,crossOverPointexp1,point1,point2],
+\tgetCrossPos[exp1];,
+\tcrossOverPointexp1 = {};,
+\tDo[ { 
+\tcrossOverPointexp1 = Append[crossOverPointexp1,partList[i] ]
+\t} , {i,1,(arrayLength)}
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t];,
+\t\t
+\t\t\t\t\t\t\t\t\t\t
+\tgetCrossPos[exp2];,
+\tcrossOverPointexp2 = {};,
+\tDo[ { 
+\tcrossOverPointexp2 = Append[crossOverPointexp2,partList[i] ]
+\t} , {i,1,(arrayLength)}
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t];,
+\t\t\t\t\t\t\t\t\t\t\t\t
+\tcrossOverPointexp1 = Delete[crossOverPointexp1,0];,
+\tcrossOverPointexp2 = Delete[crossOverPointexp2,0];,
+\t
+\t
+\tnewEx1 = ReplacePart[exp1,exp2 [[crossOverPointexp2]],
+\t\t\t\t\t {crossOverPointexp1}],
+\tnewEx2 = ReplacePart[exp2,exp1 [[crossOverPointexp1]],
+\t\t\t\t\t {crossOverPointexp2}],
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellTags->{"getCrossPos", "In[3]:="}],
+
+Cell["\<\
+getCrossPos[exp_] := { Clear[partList], minimum = 1;,
+\tplaceCounter=0;, partList[placeCounter] = -1;,
+\t\tcurExp = exp;, 
+\t\tWhile[partList[placeCounter] != 0, 
+\t\t{placeCounter = placeCounter + 1,
+\t\t
+\t\tpartList[placeCounter] = 
+\t\t\t\t\tRandom[Integer,{minimum,Length[curExp]}],
+\t\t
+\t\tcurExp = curExp[[partList[placeCounter] ]],minimum = 0
+\t\t\t\t\t};],arrayLength = (placeCounter - 1)};\t\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellTags->"getCrossPos"],
+
+Cell["Example", "Section",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Cart Centering Problem", "Subsection",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+The cart centering problem is clearly outlined and explained in [Koza 1]. \
+Briefly, it is an example of a fine control problem, where the computer has \
+complete control of a cart that it can either speed up or slow down. The cart \
+can either go left or right, and the goal is to get it centered on the track \
+and standing still. The inputs to the problem are velocity and position (v \
+and x). The goal is to find the equation that centers the cart in the least \
+amount of time. For this to work properly, the following must be entered:\
+\>", "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+gt[y_,x_]:= If[y > x, gt[#] = 1, gt[#] = -1];
+Unprotect[Abs];
+Abs[False] = False;
+Abs[True] = True;
+Protect[Abs];
+\
+\>", "Input",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "The new function gt performs a Lisp-like ",
+ StyleBox["if",
+  FontFamily->"Courier",
+  FontSize->12],
+ " function, which gives a result of 1 if true and -1 if false. This is the \
+key equation to be entered as input. Because any function can operate on any \
+argument, ",
+ StyleBox["Abs[True]",
+  FontFamily->"Courier",
+  FontSize->12],
+ " and ",
+ StyleBox["Abs[False]",
+  FontFamily->"Courier",
+  FontSize->12],
+ " had to be defined. If you think it is more correct, change ",
+ StyleBox["Abs[False] = False",
+  FontFamily->"Courier",
+  FontSize->12],
+ " to ",
+ StyleBox["True",
+  FontFamily->"Courier",
+  FontSize->12],
+ ". I'm not sure what the absolute value of ",
+ StyleBox["False",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is, so I'll leave that up to you to decide.\n\nHere is what initiating the \
+cart problem looks like (but don\[CloseCurlyQuote]t enter it until you have \
+read everything):"
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+funList = {Abs, Divide, Times, Minus, Plus, gt, Power};
+argNum =  { 1,\t  2,\t  2,\t 1,\t\t2,\t2,\t  2};
+varList = {x,v};
+popSize = 500;
+numGens = 50;
+levels = 5;
+testDepth = 20;
+
+createRandomPop[levels,funList,varList,argNum, popSize, False];
+
+newGeneration = initPopulation;
+
+Do[{
+testAll[newGeneration, popSize, testDepth, False],
+analyzeRawFitness[rawFitnessArray, popSize],
+oldGeneration = newGeneration,
+createNewGeneration[oldGeneration, normalizedFitnessArray, popSize],
+}, {counter, 1, numGens}]\
+\>", "Input",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ StyleBox["funList",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a list of all the functions to be used in our example, and ",
+ StyleBox["argNum",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is a list of the number of arguments required for each function. ",
+ StyleBox["varlist",
+  FontFamily->"Courier",
+  FontSize->12],
+ " declares our two main variables. ",
+ StyleBox["PopSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " is the size of the population. This is recomended to be 500 in [Koza 1], \
+but on my computer (Macintosh Quadra 610) the first generation alone took \
+about 36 hours to test. That means about 4.3 minutes for each individual. \
+Keep that in mind when adjusting ",
+ StyleBox["popSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " and ",
+ StyleBox["numGens",
+  FontFamily->"Courier",
+  FontSize->12],
+ " (number of generations). (If anyone actually runs this, please let me know \
+how long each individual took to test and what computer you have).\n\nThe \
+number of tests for each individual is the number ",
+ StyleBox["testDepth",
+  FontFamily->"Courier",
+  FontSize->12],
+ ". After each test is completed, the results are printed. The first number \
+printed (after test #:) is the amount of time it took to center the cart (it \
+will be 10 if the limit was reached). The second number is the position of \
+the cart on the track when it timed out, and the third number is its \
+velocity. If the ",
+ StyleBox["testDepth",
+  FontFamily->"Courier",
+  FontSize->12],
+ " = 20 and the ",
+ StyleBox["popSize",
+  FontFamily->"Courier",
+  FontSize->12],
+ " = 500, then this will line will be printed 10,000 times per generation. If \
+you actually decide to run this, you may want to comment out the line that \
+prints this to speed up the run (I included this because I often monitor what\
+\[CloseCurlyQuote]s going on.)\n\nOver the course of the tests, it is \
+inevitable that the you will run into an indeterminate expression or two. \
+This fitness test is very good about recognizing bad results and \
+automatically forces a time out when an indeterminate expression comes up.\n\n\
+\nHere is the actual fitness test for the problem (referenced from ",
+ StyleBox["testAll",
+  FontFamily->"Courier",
+  FontSize->12],
+ "):"
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+fitnessTest[thisOrganism_,trialNum_,doPrint_]:= {Clear[testPoint,testResult],
+\tnumHits = 0,
+\tDo[{testPoint[i] = Random[Integer,{-75,75}],
+\t\ttestPoint[i] = N[testPoint[i] / 100]
+\t},
+\t\t\t{i,1,trialNum}],
+\tDo[{testSpeed[i] = Random[Integer,{-75,75}],
+\t\ttestSpeed[i] = N[testSpeed[i] / 100]
+\t},
+\t\t\t{i,1,trialNum}],
+\t\t\t
+\tDo[{thePoint = testPoint[i], theDirection = testSpeed[i],
+\t\ttime = 0,
+\t\tthePlace = thePoint,
+\t\ttheSpeed = theDirection,
+\tWhile[((thePlace != 0.0) || (theSpeed != 0.0)) && (time < 10),
+\t\t{Clear[x,v],
+\t\ttime += 0.02,
+\t\tmodifyDirection = thisOrganism /.{x->thePoint,v->theDirection},
+\t\tIf[modifyDirection > 0, modifyDirection = 1, modifyDirection = -1,time = \
+10],
+\t\ttheDirection += (modifyDirection * 0.02),
+\t\ttheDirection = Chop[theDirection],
+\t\tthePoint += (theDirection * 0.02), 
+\t\tthePoint = Chop[thePoint],
+\t\tIf[doPrint == True, 
+\t\t\tPrint[time, \" \",thePoint,\" \", theDirection,\" \", modifyDirection] ],
+\t\tthePlace = thePoint,
+\t\tIf[thePlace <= 0.01 && thePlace >= -0.01, thePlace = 0.0, {}, time = 10],
+\t\ttheSpeed = theDirection,
+\t\tIf[theSpeed < 0.015 && theSpeed > -0.015, theSpeed = 0.0, {}, time = 10]
+\t\t\t\t\t\t\t}],
+\t\t\t\ttestResult[i] = time,
+\t\t\t\tIf[time != 10., numHits += 1],
+\t\t\t\tPrint[\"Test \",i,\": \",testResult[i], \" \",thePoint, \" \", \
+theDirection]},\t
+\t\t\t\t\t\t\t\t{i,1,trialNum}],
+\t\t\t\t
+\t\ttotalTime = testResult[1];,
+\t\tDo[totalTime += testResult[i], {i,2,trialNum}],
+\t\tfitnessTestScore = totalTime / trialNum;,
+\t\tPrint[fitnessTestScore]
+\t\t\t\t\t\t\t\t\t\t\t}\
+\>", "Input",
+ InitializationCell->True,
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["\<\
+This is not a perfect, but it provides results very similar to those in [Koza \
+1]. I wasn't sure how much leeway I could give the cart to be considered \
+perfectly centered, so I decided to use the two numbers that gave the closest \
+results to the book.\
+\>", "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Contacting the Author", "Section",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "If you have any questions, comments, or suggestions, please e-mail me at: \
+SonOfaBitS@aol.com. I would be very happy to clarify or discuss anything in \
+this document.\n\nIf you want to distribute this outside of ",
+ StyleBox["MathSource",
+  FontSlant->"Italic"],
+ ", please contact me first."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell["Bibliography", "Section",
+ ImageRegion->{{0, 1}, {0, 1}}],
+
+Cell[TextData[{
+ "Koza 1:\nKoza, John.1992. ",
+ StyleBox["Genetic Programming: on the programming of computers by means of \
+natural selection",
+  FontSlant->"Italic"],
+ ". MIT Press.\n\nGray:\nGray, John. 1994. ",
+ StyleBox["Mastering Mathematica",
+  FontSlant->"Italic"],
+ ".. Academic Press, Inc.\n\nAbelson:\nAbelson, H. and Sussman, G.J. with \
+Sussman, J. 1985. ",
+ StyleBox["Structure and Interpretation of Computer Programs",
+  FontSlant->"Italic"],
+ ". The MIT Press."
+}], "Text",
+ CellMargins->{{Inherited, 54}, {Inherited, Inherited}},
+ ImageRegion->{{0, 1}, {0, 1}}]
+},
+AutoGeneratedPackage->None,
+WindowToolbars->{},
+CellGrouping->Manual,
+WindowSize->{690, 740},
+WindowMargins->{{164, Automatic}, {Automatic, 0}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+ShowCellLabel->True,
+ShowCellTags->False,
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb",
+PrivateNotebookOptions -> {"ColorPalette" -> {RGBColor, -1}},
+RenderingOptions -> {"ObjectDithering" -> True},
+RenderingOptions -> {"RasterDithering" -> False}
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "getCrossPos"->{
+  Cell[21393, 631, 967, 30, 498, "Input",
+   InitializationCell->True,
+   CellTags->{"getCrossPos", "In[3]:="}],
+  Cell[22363, 663, 512, 15, 228, "Input",
+   InitializationCell->True,
+   CellTags->"getCrossPos"]},
+ "In[3]:="->{
+  Cell[21393, 631, 967, 30, 498, "Input",
+   InitializationCell->True,
+   CellTags->{"getCrossPos", "In[3]:="}]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"getCrossPos", 31649, 936},
+ {"In[3]:=", 31877, 943}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 195, 6, 148, "Title"],
+Cell[778, 30, 335, 11, 70, "Name",
+ CellGroupingRules->{"TitleGrouping", 19}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1150, 46, 104, 2, 50, "Section",
+ CellGroupingRules->{"TitleGrouping", 30}],
+Cell[1257, 50, 1554, 34, 70, "Text"],
+Cell[CellGroupData[{
+Cell[2836, 88, 69, 1, 70, "Subsection"],
+Cell[2908, 91, 622, 12, 70, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3567, 108, 82, 1, 70, "Subsection"],
+Cell[3652, 111, 942, 16, 70, "Text"]
+}, Closed]]
+}, Closed]],
+Cell[4621, 131, 131, 2, 50, "Section"],
+Cell[4755, 135, 84, 1, 36, "Subsection"],
+Cell[4842, 138, 916, 15, 217, "Text"],
+Cell[5761, 155, 686, 18, 264, "Input",
+ InitializationCell->True],
+Cell[6450, 175, 1268, 33, 201, "Text"],
+Cell[7721, 210, 75, 1, 32, "Input"],
+Cell[7799, 213, 146, 7, 30, "Text"],
+Cell[7948, 222, 65, 1, 32, "Input"],
+Cell[8016, 225, 814, 21, 163, "Text"],
+Cell[8833, 248, 213, 9, 32, "Input"],
+Cell[9049, 259, 1359, 43, 277, "Text"],
+Cell[10411, 304, 792, 17, 282, "Input",
+ InitializationCell->True],
+Cell[11206, 323, 829, 25, 426, "Input",
+ InitializationCell->True],
+Cell[12038, 350, 413, 13, 210, "Input",
+ InitializationCell->True],
+Cell[12454, 365, 434, 16, 49, "Text"],
+Cell[12891, 383, 70, 1, 44, "Subsection"],
+Cell[12964, 386, 905, 26, 122, "Text"],
+Cell[13872, 414, 612, 16, 246, "Input",
+ InitializationCell->True],
+Cell[14487, 432, 1272, 32, 220, "Text"],
+Cell[15762, 466, 865, 22, 336, "Input",
+ InitializationCell->True],
+Cell[16630, 490, 337, 6, 68, "Text"],
+Cell[16970, 498, 71, 1, 44, "Subsection"],
+Cell[17044, 501, 1000, 17, 255, "Text"],
+Cell[18047, 520, 667, 17, 246, "Input",
+ InitializationCell->True],
+Cell[18717, 539, 589, 10, 125, "Text"],
+Cell[19309, 551, 754, 23, 390, "Input",
+ InitializationCell->True],
+Cell[20066, 576, 91, 1, 30, "Text"],
+Cell[20160, 579, 399, 14, 228, "Input",
+ InitializationCell->True],
+Cell[20562, 595, 458, 16, 68, "Text"],
+Cell[21023, 613, 367, 16, 228, "Input",
+ InitializationCell->True],
+Cell[21393, 631, 967, 30, 498, "Input",
+ InitializationCell->True,
+ CellTags->{"getCrossPos", "In[3]:="}],
+Cell[22363, 663, 512, 15, 228, "Input",
+ InitializationCell->True,
+ CellTags->"getCrossPos"],
+Cell[22878, 680, 58, 1, 64, "Section"],
+Cell[22939, 683, 76, 1, 36, "Subsection"],
+Cell[23018, 686, 654, 10, 122, "Text"],
+Cell[23675, 698, 171, 8, 122, "Input"],
+Cell[23849, 708, 1024, 32, 163, "Text"],
+Cell[24876, 742, 561, 20, 338, "Input"],
+Cell[25440, 764, 2363, 59, 467, "Text"],
+Cell[27806, 825, 1667, 46, 768, "Input",
+ InitializationCell->True],
+Cell[29476, 873, 368, 7, 68, "Text"],
+Cell[29847, 882, 72, 1, 64, "Section"],
+Cell[29922, 885, 413, 9, 103, "Text"],
+Cell[30338, 896, 63, 1, 64, "Section"],
+Cell[30404, 899, 578, 15, 198, "Text"]
+}
+]
+*)
+
